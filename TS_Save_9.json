@@ -3,14 +3,14 @@
   "GameMode": "Betrayal Widow's Walk",
   "Gravity": 0.5,
   "PlayArea": 0.5,
-  "Date": "3/2/2020 10:45:46 PM",
+  "Date": "3/3/2020 1:16:52 AM",
   "Table": "Table_Custom",
   "TableURL": "http://i.imgur.com/kzy6wAc.jpg",
   "Sky": "Sky_Museum",
   "Note": "",
   "Rules": "",
   "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
-  "LuaScript": "--[[ Lua code. See documentation: http://berserk-games.com/knowledgebase/scripting/ --]]\n\n--[[ The OnLoad function. This is called after everything in the game save finishes loading.\nMost of your script code goes here. --]]\n\nomen_deck_id = \"aa006b\"\n\n\nfunction onload()\n    omen_deck = getObjectFromGUID(omen_deck_id)\n\n    omen_button = {}\n    omen_button.click_function = 'deal_omen_card'\n    omen_button.function_owner = nil\n    omen_button.label = 'Deal Omen Card'\n    omen_button.position = {2,0,0}\n    omen_button.rotation = {0,0,0}\n    omen_button.width = 800\n    omen_button.height = 500\n    omen_button.font_size = 100\n    omen_button.tooltip = \"I'm A Button!\"\n    omen_deck.createButton(omen_button)\n\n\n    omen_deck_contents = omen_deck.getObjects()\n    for key, obj in pairs(omen_deck_contents) do\n        print(obj.guid)\n    end\n\n    --[[ print('Onload!') --]]\nend\n\nfunction ping_api()\n    output = nil\n    WebRequest.get(\"http://127.0.0.1:5000/\", function(result)\n        print(result.is_error)\n        if result.is_error \n        then \n            print(result.error)\n            output = false\n        else \n            print(result.error)\n            output = true\n        end\n    end)\n    while output==nil do \n        \n    end\n    return output\nend\n\n\n\nfunction deal_omen_card()\n    print(ping_api())\nend\n\n--[[ The Update function. This is called once per frame. --]]\nfunction update ()\n        --[[ print('Update loop!') --]]\nend",
+  "LuaScript": "--[[ Lua code. See documentation: http://berserk-games.com/knowledgebase/scripting/ --]]\n\n--[[ The OnLoad function. This is called after everything in the game save finishes loading.\nMost of your script code goes here. --]]\n\nomen_deck_id = \"aa006b\"\napi_status = false\napi_address = \"http://127.0.0.1:5000/\"\n\nfunction onload()\n    ping_api()\n    omen_deck = getObjectFromGUID(omen_deck_id)\n\n    omen_button = {}\n    omen_button.click_function = 'deal_omen_card'\n    omen_button.function_owner = nil\n    omen_button.label = 'Deal Omen Card'\n    omen_button.position = {2,0,0}\n    omen_button.rotation = {0,0,0}\n    omen_button.width = 800\n    omen_button.height = 500\n    omen_button.font_size = 100\n    omen_button.tooltip = \"I'm A Button!\"\n    omen_deck.createButton(omen_button)\n\n\n    omen_deck_contents = omen_deck.getObjects()\n    \n\n    --[[ print('Onload!') --]]\nend\n\nfunction ping_api()\n    WebRequest.get(api_address, function(result)\n        print(result.is_error)\n        if result.is_error \n        then \n            print(result.error)\n            api_status = false\n        else \n            api_status = true\n        end\n    end)\nend\n\n\nfunction deal_omen_card(obj, color, alt_click)\n    print(color)\n    if api_status then\n        WebRequest.put(api_address..\"dealOmen\", JSON.encode(obj.getObjects()), function(result)\n            print(result.text)\n            parameters = {}\n            parameters.guid = result.text\n            parameters.callback_function = function(obj) \n                dealt_card = getObjectFromGUID(obj.getGUID())\n                dealt_card.deal(1, color)\n            end\n            obj.takeObject(parameters)\n        end)\n    else\n        obj.shuffle()\n        obj.deal(1, color)\n    end\nend\n\n--[[ The Update function. This is called once per frame. --]]\nfunction update ()\n        --[[ print('Update loop!') --]]\nend",
   "LuaScriptState": "",
   "Grid": {
     "Type": 0,
@@ -70,21 +70,21 @@
         "Color": "Blue",
         "Transform": {
           "posX": 23.6700039,
-          "posY": 3.12890673,
+          "posY": 3.07408285,
           "posZ": 34.4527626,
           "rotX": 0.0,
           "rotY": 179.8,
           "rotZ": 0.0,
-          "scaleX": 15.3329277,
+          "scaleX": 15.3330173,
           "scaleY": 11.8970528,
-          "scaleZ": 6.35314655
+          "scaleZ": 6.35319138
         }
       },
       {
         "Color": "Green",
         "Transform": {
           "posX": -23.6700039,
-          "posY": 3.12890673,
+          "posY": 3.07408285,
           "posZ": 34.43159,
           "rotX": 0.0,
           "rotY": 180.000137,
@@ -98,7 +98,7 @@
         "Color": "White",
         "Transform": {
           "posX": 30.81625,
-          "posY": 4.296745,
+          "posY": 4.241921,
           "posZ": -34.36184,
           "rotX": 0.0,
           "rotY": 0.0,
@@ -112,7 +112,7 @@
         "Color": "Red",
         "Transform": {
           "posX": -34.17523,
-          "posY": 4.296745,
+          "posY": 4.241921,
           "posZ": -34.3113136,
           "rotX": 0.0,
           "rotY": 0.0,
@@ -126,28 +126,28 @@
         "Color": "Purple",
         "Transform": {
           "posX": 51.7664833,
-          "posY": 4.296745,
+          "posY": 4.241921,
           "posZ": -0.9092634,
           "rotX": 0.0,
           "rotY": 270.0,
           "rotZ": 0.0,
-          "scaleX": 14.4062958,
+          "scaleX": 14.4063778,
           "scaleY": 7.0,
-          "scaleZ": 5.85621166
+          "scaleZ": 5.856238
         }
       },
       {
         "Color": "Yellow",
         "Transform": {
           "posX": -51.93598,
-          "posY": 4.30075,
+          "posY": 4.24592447,
           "posZ": -0.3080852,
           "rotX": 0.0,
           "rotY": 89.99999,
           "rotZ": 0.0,
-          "scaleX": 15.1309385,
+          "scaleX": 15.1308861,
           "scaleY": 7.0,
-          "scaleZ": 5.737888
+          "scaleZ": 5.737864
         }
       }
     ]
@@ -166,12 +166,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 29.8893127,
-        "posY": 1.06093085,
-        "posZ": -28.963644,
-        "rotX": 359.9907,
-        "rotY": 359.9779,
-        "rotZ": -0.00289954641,
+        "posX": 29.8893166,
+        "posY": 1.06084418,
+        "posZ": -28.9636269,
+        "rotX": 0.00810917653,
+        "rotY": 359.978027,
+        "rotZ": -0.002663368,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -267,7 +267,7 @@
       "ColorDiffuse": {
         "r": 0.597829759,
         "g": 0.7568628,
-        "b": 0.333331376
+        "b": 0.333331347
       },
       "Locked": true,
       "Grid": false,
@@ -291,11 +291,11 @@
       "Name": "Deck",
       "Transform": {
         "posX": -7.99979353,
-        "posY": 1.070987,
+        "posY": 1.06232584,
         "posZ": -28.8254414,
-        "rotX": 1.63105374E-09,
+        "rotX": -1.2338613E-07,
         "rotY": 180.0,
-        "rotZ": -1.20560244E-07,
+        "rotZ": -9.160253E-08,
         "scaleX": 1.70230925,
         "scaleY": 1.0,
         "scaleZ": 1.70230925
@@ -320,27 +320,25 @@
       "Hands": false,
       "SidewaysCard": false,
       "DeckIDs": [
-        15900,
-        15901,
-        15902,
-        15903,
-        15904,
-        15905,
-        15906,
-        15907,
-        15908,
-        15909,
-        15910,
+        15916,
+        15918,
+        15917,
         15911,
         15912,
-        15913,
+        15905,
+        15908,
+        15904,
+        15919,
+        15909,
+        15907,
+        15903,
+        15901,
+        15906,
         15914,
         15915,
-        15916,
-        15917,
-        15918,
-        15919,
-        15920
+        15920,
+        15900,
+        15913
       ],
       "CustomDeck": {
         "159": {
@@ -359,63 +357,17 @@
         {
           "Name": "Card",
           "Transform": {
-            "posX": -8.000015,
-            "posY": 1.2647891,
-            "posZ": -28.8254452,
-            "rotX": -1.7988954E-07,
-            "rotY": 180.0216,
-            "rotZ": 180.0,
-            "scaleX": 1.70230925,
-            "scaleY": 1.0,
-            "scaleZ": 1.70230925
-          },
-          "Nickname": "Bite",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": false,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15900,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "5c528b"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.52126837,
-            "posY": 1.29316878,
-            "posZ": -18.0035667,
-            "rotX": 359.959045,
-            "rotY": 180.000473,
-            "rotZ": 351.764954,
+            "posX": -4.597982,
+            "posY": 1.21921384,
+            "posZ": -17.9451885,
+            "rotX": -0.00471283961,
+            "rotY": 180.023834,
+            "rotZ": 4.04963446,
             "scaleX": 1.0,
             "scaleY": 1.0,
             "scaleZ": 1.0
           },
-          "Nickname": "Bloodstone",
+          "Nickname": "Rope",
           "Description": "Omen",
           "GMNotes": "",
           "ColorDiffuse": {
@@ -431,7 +383,7 @@
           "Sticky": true,
           "Tooltip": true,
           "GridProjection": false,
-          "CardID": 15901,
+          "CardID": 15916,
           "SidewaysCard": false,
           "CustomDeck": {
             "74": {
@@ -446,22 +398,22 @@
           "XmlUI": "",
           "LuaScript": "",
           "LuaScriptState": "",
-          "GUID": "d20d06"
+          "GUID": "af9b3b"
         },
         {
           "Name": "Card",
           "Transform": {
-            "posX": -5.226607,
-            "posY": 1.19524038,
-            "posZ": -17.9513531,
-            "rotX": 2.941333E-06,
-            "rotY": 180.000046,
-            "rotZ": -5.374911E-06,
+            "posX": -2.49676251,
+            "posY": 1.26039886,
+            "posZ": -18.0646782,
+            "rotX": 0.498872846,
+            "rotY": 180.015976,
+            "rotZ": 0.0136104384,
             "scaleX": 1.0,
             "scaleY": 1.0,
             "scaleZ": 1.0
           },
-          "Nickname": "Book",
+          "Nickname": "Spear",
           "Description": "Omen",
           "GMNotes": "",
           "ColorDiffuse": {
@@ -477,7 +429,7 @@
           "Sticky": true,
           "Tooltip": true,
           "GridProjection": false,
-          "CardID": 15902,
+          "CardID": 15918,
           "SidewaysCard": false,
           "CustomDeck": {
             "74": {
@@ -492,22 +444,22 @@
           "XmlUI": "",
           "LuaScript": "",
           "LuaScriptState": "",
-          "GUID": "2ab044"
+          "GUID": "bfd86a"
         },
         {
           "Name": "Card",
           "Transform": {
-            "posX": -5.294088,
-            "posY": 1.18156624,
-            "posZ": -17.8120689,
-            "rotX": -3.82979351E-06,
-            "rotY": 180.000031,
-            "rotZ": 1.0820575E-05,
+            "posX": -5.096555,
+            "posY": 1.236852,
+            "posZ": -17.7752838,
+            "rotX": 4.01046577E-07,
+            "rotY": 180.005081,
+            "rotZ": -2.98593313E-05,
             "scaleX": 1.0,
             "scaleY": 1.0,
             "scaleZ": 1.0
           },
-          "Nickname": "Box",
+          "Nickname": "Skull",
           "Description": "Omen",
           "GMNotes": "",
           "ColorDiffuse": {
@@ -523,7 +475,7 @@
           "Sticky": true,
           "Tooltip": true,
           "GridProjection": false,
-          "CardID": 15903,
+          "CardID": 15917,
           "SidewaysCard": false,
           "CustomDeck": {
             "74": {
@@ -538,329 +490,7 @@
           "XmlUI": "",
           "LuaScript": "",
           "LuaScriptState": "",
-          "GUID": "38980b"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.360251,
-            "posY": 1.179563,
-            "posZ": -17.8943386,
-            "rotX": 4.02604485E-07,
-            "rotY": 180.005051,
-            "rotZ": -6.36917457E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Cat",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15904,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "ebe34c"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.16475725,
-            "posY": 1.182222,
-            "posZ": -17.8480167,
-            "rotX": 6.91913044E-07,
-            "rotY": 180.005035,
-            "rotZ": -8.26177347E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Crystal Ball",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15905,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "ce7f74"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -4.88450575,
-            "posY": 1.18721116,
-            "posZ": -17.8594933,
-            "rotX": -6.196036E-07,
-            "rotY": 180.005035,
-            "rotZ": 8.842193E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Dog",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15906,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "929cee"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -4.965177,
-            "posY": 1.19353747,
-            "posZ": -18.0005779,
-            "rotX": -5.06450064E-08,
-            "rotY": 180.005051,
-            "rotZ": 9.866341E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Girl",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15907,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "c20728"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.139689,
-            "posY": 1.19653344,
-            "posZ": -18.3434219,
-            "rotX": -0.00330350967,
-            "rotY": 179.99295,
-            "rotZ": 6.38592,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Holy Symbol",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15908,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "c7e981"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.51369953,
-            "posY": 1.16066551,
-            "posZ": -17.9388866,
-            "rotX": -7.960928E-07,
-            "rotY": 180.005051,
-            "rotZ": 8.352756E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Key",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15909,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "c1186a"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.187577,
-            "posY": 1.17032027,
-            "posZ": -17.9528313,
-            "rotX": 1.50690028E-07,
-            "rotY": 180.005051,
-            "rotZ": 5.453842E-06,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Letter",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15910,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "243838"
+          "GUID": "5ec533"
         },
         {
           "Name": "Card",
@@ -957,17 +587,17 @@
         {
           "Name": "Card",
           "Transform": {
-            "posX": -5.17402,
-            "posY": 1.19930089,
-            "posZ": -17.9694786,
-            "rotX": 1.09322507E-08,
-            "rotY": 180.005066,
-            "rotZ": 5.56029363E-07,
+            "posX": -5.16475725,
+            "posY": 1.182222,
+            "posZ": -17.8480167,
+            "rotX": 6.91913044E-07,
+            "rotY": 180.005035,
+            "rotZ": -8.26177347E-06,
             "scaleX": 1.0,
             "scaleY": 1.0,
             "scaleZ": 1.0
           },
-          "Nickname": "Medallion",
+          "Nickname": "Crystal Ball",
           "Description": "Omen",
           "GMNotes": "",
           "ColorDiffuse": {
@@ -983,7 +613,7 @@
           "Sticky": true,
           "Tooltip": true,
           "GridProjection": false,
-          "CardID": 15913,
+          "CardID": 15905,
           "SidewaysCard": false,
           "CustomDeck": {
             "74": {
@@ -998,7 +628,375 @@
           "XmlUI": "",
           "LuaScript": "",
           "LuaScriptState": "",
-          "GUID": "2305a1"
+          "GUID": "ce7f74"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.139689,
+            "posY": 1.19653344,
+            "posZ": -18.3434219,
+            "rotX": -0.00330350967,
+            "rotY": 179.99295,
+            "rotZ": 6.38592,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Holy Symbol",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15908,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "c7e981"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.360251,
+            "posY": 1.179563,
+            "posZ": -17.8943386,
+            "rotX": 4.02604485E-07,
+            "rotY": 180.005051,
+            "rotZ": -6.36917457E-06,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Cat",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15904,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "ebe34c"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -2.65243149,
+            "posY": 1.2561754,
+            "posZ": -18.4615,
+            "rotX": 1.11685544E-07,
+            "rotY": 180.000031,
+            "rotZ": 1.52541415E-05,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Spirit Board",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15919,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "e605ac"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.51369953,
+            "posY": 1.16066551,
+            "posZ": -17.9388866,
+            "rotX": -7.960928E-07,
+            "rotY": 180.005051,
+            "rotZ": 8.352756E-06,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Key",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15909,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "c1186a"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -4.965177,
+            "posY": 1.19353747,
+            "posZ": -18.0005779,
+            "rotX": -5.06450064E-08,
+            "rotY": 180.005051,
+            "rotZ": 9.866341E-06,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Girl",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15907,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "c20728"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.294088,
+            "posY": 1.18156624,
+            "posZ": -17.8120689,
+            "rotX": -3.82979351E-06,
+            "rotY": 180.000031,
+            "rotZ": 1.0820575E-05,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Box",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15903,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "38980b"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.52126837,
+            "posY": 1.29316878,
+            "posZ": -18.0035667,
+            "rotX": 359.959045,
+            "rotY": 180.000473,
+            "rotZ": 351.764954,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Bloodstone",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15901,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "d20d06"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -4.88450575,
+            "posY": 1.18721116,
+            "posZ": -17.8594933,
+            "rotX": -6.196036E-07,
+            "rotY": 180.005035,
+            "rotZ": 8.842193E-06,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Dog",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15906,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "929cee"
         },
         {
           "Name": "Card",
@@ -1095,190 +1093,6 @@
         {
           "Name": "Card",
           "Transform": {
-            "posX": -4.597982,
-            "posY": 1.21921384,
-            "posZ": -17.9451885,
-            "rotX": -0.00471283961,
-            "rotY": 180.023834,
-            "rotZ": 4.04963446,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Rope",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15916,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "af9b3b"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -5.096555,
-            "posY": 1.236852,
-            "posZ": -17.7752838,
-            "rotX": 4.01046577E-07,
-            "rotY": 180.005081,
-            "rotZ": -2.98593313E-05,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Skull",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15917,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "5ec533"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -2.49676251,
-            "posY": 1.26039886,
-            "posZ": -18.0646782,
-            "rotX": 0.498872846,
-            "rotY": 180.015976,
-            "rotZ": 0.0136104384,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Spear",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15918,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "bfd86a"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
-            "posX": -2.65243149,
-            "posY": 1.2561754,
-            "posZ": -18.4615,
-            "rotX": 1.11685544E-07,
-            "rotY": 180.000031,
-            "rotZ": 1.52541415E-05,
-            "scaleX": 1.0,
-            "scaleY": 1.0,
-            "scaleZ": 1.0
-          },
-          "Nickname": "Spirit Board",
-          "Description": "Omen",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0
-          },
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "CardID": 15919,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "74": {
-              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
-              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
-              "NumWidth": 7,
-              "NumHeight": 3,
-              "BackIsHidden": true,
-              "UniqueBack": false
-            }
-          },
-          "XmlUI": "",
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "GUID": "e605ac"
-        },
-        {
-          "Name": "Card",
-          "Transform": {
             "posX": -1.15998173,
             "posY": 1.0355165,
             "posZ": -28.43998,
@@ -1321,6 +1135,98 @@
           "LuaScript": "",
           "LuaScriptState": "",
           "GUID": "4cd192"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -8.000015,
+            "posY": 1.2647891,
+            "posZ": -28.8254452,
+            "rotX": -1.7988954E-07,
+            "rotY": 180.0216,
+            "rotZ": 180.0,
+            "scaleX": 1.70230925,
+            "scaleY": 1.0,
+            "scaleZ": 1.70230925
+          },
+          "Nickname": "Bite",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": false,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15900,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "5c528b"
+        },
+        {
+          "Name": "Card",
+          "Transform": {
+            "posX": -5.17402,
+            "posY": 1.19930089,
+            "posZ": -17.9694786,
+            "rotX": 1.09322507E-08,
+            "rotY": 180.005066,
+            "rotZ": 5.56029363E-07,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "Medallion",
+          "Description": "Omen",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "CardID": 15913,
+          "SidewaysCard": false,
+          "CustomDeck": {
+            "74": {
+              "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+              "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+              "NumWidth": 7,
+              "NumHeight": 3,
+              "BackIsHidden": true,
+              "UniqueBack": false
+            }
+          },
+          "XmlUI": "",
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "GUID": "2305a1"
         }
       ],
       "GUID": "aa006b"
@@ -1328,10 +1234,10 @@
     {
       "Name": "Deck",
       "Transform": {
-        "posX": 0.000143445621,
+        "posX": 0.000143432262,
         "posY": 1.1602602,
         "posZ": -28.824892,
-        "rotX": 4.82242051E-08,
+        "rotX": -7.645207E-09,
         "rotY": 180.0124,
         "rotZ": 180.0,
         "scaleX": 1.702724,
@@ -2933,7 +2839,7 @@
         "posX": 7.99998474,
         "posY": 1.28283751,
         "posZ": -28.8254452,
-        "rotX": -3.18058246E-09,
+        "rotX": 4.07984757E-09,
         "rotY": 180.000778,
         "rotZ": 180.0,
         "scaleX": 1.76113939,
@@ -5614,11 +5520,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.7618866,
-        "posY": 0.960909963,
+        "posY": 0.9609188,
         "posZ": 8.629296,
-        "rotX": 0.008616394,
-        "rotY": 90.00772,
-        "rotZ": 0.0118516879,
+        "rotX": 359.989471,
+        "rotY": 90.00761,
+        "rotZ": -0.003920147,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -5913,12 +5819,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 12.3680344,
-        "posY": 1.030932,
-        "posZ": 28.8129063,
-        "rotX": 0.00174496684,
-        "rotY": 0.0008949447,
-        "rotZ": 180.012482,
+        "posX": 12.3680267,
+        "posY": 1.03096414,
+        "posZ": 28.8129,
+        "rotX": -0.004520813,
+        "rotY": 0.0009435004,
+        "rotZ": 180.019592,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6214,11 +6120,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -46.7500954,
-        "posY": 0.965139031,
-        "posZ": 9.544377,
-        "rotX": 0.005555697,
+        "posY": 0.9651413,
+        "posZ": 9.544376,
+        "rotX": 0.002866188,
         "rotY": 270.001038,
-        "rotZ": 3.3694876E-05,
+        "rotZ": 0.006840704,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6514,11 +6420,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 28.5236187,
-        "posY": 0.960940242,
+        "posY": 0.9610661,
         "posZ": -28.8067875,
-        "rotX": 0.0122104371,
-        "rotY": 180.002426,
-        "rotZ": 0.0020730102,
+        "rotX": 0.00560582429,
+        "rotY": 180.002365,
+        "rotZ": 0.00147408573,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6814,11 +6720,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -28.466341,
-        "posY": 0.9610779,
-        "posZ": -28.77733,
-        "rotX": 0.00523775024,
-        "rotY": 180.0004,
-        "rotZ": 0.00133828109,
+        "posY": 0.9608655,
+        "posZ": -28.7773285,
+        "rotX": 0.018038759,
+        "rotY": 180.000381,
+        "rotZ": 0.0018104685,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -7113,12 +7019,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -11.34153,
-        "posY": 1.030966,
-        "posZ": 28.7661953,
-        "rotX": -0.00427582162,
-        "rotY": 0.0022054154,
-        "rotZ": 180.0197,
+        "posX": -11.34152,
+        "posY": 1.03092647,
+        "posZ": 28.766201,
+        "rotX": 0.00173980522,
+        "rotY": 0.002230249,
+        "rotZ": 180.01265,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -7509,12 +7415,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 29.4549637,
-        "posY": 1.06126881,
-        "posZ": -27.8098564,
-        "rotX": 359.9865,
-        "rotY": 359.98587,
-        "rotZ": -0.00213221274,
+        "posX": 29.4549618,
+        "posY": 1.061188,
+        "posZ": -27.8098431,
+        "rotX": -0.000868656964,
+        "rotY": 359.986,
+        "rotZ": -3.66727982E-05,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7555,12 +7461,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 27.5782852,
-        "posY": 1.06124425,
-        "posZ": -27.81381,
-        "rotX": 359.9902,
-        "rotY": 359.987,
-        "rotZ": -0.00127834559,
+        "posX": 27.5782833,
+        "posY": 1.06113076,
+        "posZ": -27.813797,
+        "rotX": -2.30682235E-05,
+        "rotY": 359.986877,
+        "rotZ": 0.000804762938,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7601,12 +7507,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 27.19842,
-        "posY": 1.06100738,
-        "posZ": -29.1509628,
-        "rotX": 359.9888,
-        "rotY": 0.0192217175,
-        "rotZ": -0.00243753474,
+        "posX": 27.1984177,
+        "posY": 1.06109273,
+        "posZ": -29.1509533,
+        "rotX": -0.00301432959,
+        "rotY": 0.0190911368,
+        "rotZ": 0.0004471914,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7648,11 +7554,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -27.5161476,
-        "posY": 1.06097841,
-        "posZ": -27.7813244,
-        "rotX": 0.00247941,
-        "rotY": 359.982147,
-        "rotZ": -0.004560346,
+        "posY": 1.06115925,
+        "posZ": -27.7813473,
+        "rotX": 359.987549,
+        "rotY": 359.982056,
+        "rotZ": -0.00201165467,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7662,8 +7568,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999622,
-        "b": 0.0939962342
+        "g": 0.09999616,
+        "b": 0.0939961746
       },
       "Locked": false,
       "Grid": false,
@@ -7694,11 +7600,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -27.24138,
-        "posY": 1.06089485,
-        "posZ": -29.3255234,
-        "rotX": 0.00395413954,
-        "rotY": 359.9913,
-        "rotZ": -0.00360097247,
+        "posY": 1.06073368,
+        "posZ": -29.3255482,
+        "rotX": 359.984283,
+        "rotY": 359.991241,
+        "rotZ": -0.00260885619,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7708,8 +7614,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999622,
-        "b": 0.0939962342
+        "g": 0.09999616,
+        "b": 0.0939961746
       },
       "Locked": false,
       "Grid": false,
@@ -7740,11 +7646,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -29.8522549,
-        "posY": 1.06110358,
-        "posZ": -28.9366817,
-        "rotX": -0.00321647082,
-        "rotY": 0.00929041,
-        "rotZ": -0.00350478129,
+        "posY": 1.06093025,
+        "posZ": -28.9367046,
+        "rotX": 359.984131,
+        "rotY": 0.008953989,
+        "rotZ": -0.00152915274,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7754,8 +7660,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999622,
-        "b": 0.0939962342
+        "g": 0.09999616,
+        "b": 0.0939961746
       },
       "Locked": false,
       "Grid": false,
@@ -7785,12 +7691,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -29.4224358,
-        "posY": 1.06131649,
-        "posZ": -27.7747574,
-        "rotX": 359.9942,
-        "rotY": -0.00115125463,
-        "rotZ": -0.00168234319,
+        "posX": -29.4224339,
+        "posY": 1.06134415,
+        "posZ": -27.7747784,
+        "rotX": 359.981934,
+        "rotY": -0.0011196807,
+        "rotZ": -0.003063035,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7800,8 +7706,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999622,
-        "b": 0.0939962342
+        "g": 0.09999616,
+        "b": 0.0939961746
       },
       "Locked": false,
       "Grid": false,
@@ -7831,12 +7737,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -45.7069168,
-        "posY": 1.06521678,
-        "posZ": 8.570964,
-        "rotX": 0.0108649284,
-        "rotY": 270.002075,
-        "rotZ": 0.004833741,
+        "posX": -45.706913,
+        "posY": 1.065009,
+        "posZ": 8.570947,
+        "rotX": 0.00978729,
+        "rotY": 270.002045,
+        "rotZ": 0.0116642239,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7847,7 +7753,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999067
+        "b": 0.171999007
       },
       "Locked": false,
       "Grid": false,
@@ -7877,12 +7783,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -47.27563,
-        "posY": 1.06506455,
-        "posZ": 10.7736006,
-        "rotX": 0.0167925619,
+        "posX": -47.27562,
+        "posY": 1.06543207,
+        "posZ": 10.7735844,
+        "rotX": 0.000593097939,
         "rotY": 269.999542,
-        "rotZ": 0.00378261623,
+        "rotZ": 0.0119538521,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7893,7 +7799,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999067
+        "b": 0.171999007
       },
       "Locked": false,
       "Grid": false,
@@ -7923,12 +7829,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -47.060955,
-        "posY": 1.06509471,
-        "posZ": 8.226575,
-        "rotX": 0.0144253578,
-        "rotY": 270.0043,
-        "rotZ": 0.00406545354,
+        "posX": -47.06095,
+        "posY": 1.06460977,
+        "posZ": 8.226548,
+        "rotX": 0.0168090872,
+        "rotY": 270.00412,
+        "rotZ": 0.0205579177,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7939,7 +7845,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999067
+        "b": 0.171999007
       },
       "Locked": false,
       "Grid": false,
@@ -7969,12 +7875,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -45.5840454,
-        "posY": 1.065411,
-        "posZ": 10.3248854,
-        "rotX": 0.00750650046,
-        "rotY": 270.01,
-        "rotZ": 0.00340720615,
+        "posX": -45.58404,
+        "posY": 1.06546652,
+        "posZ": 10.324872,
+        "rotX": 0.00275817118,
+        "rotY": 270.009857,
+        "rotZ": 0.008837369,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7985,7 +7891,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999067
+        "b": 0.171999007
       },
       "Locked": false,
       "Grid": false,
@@ -8015,12 +7921,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.1031561,
-        "posY": 1.06062841,
-        "posZ": 27.6247444,
-        "rotX": 7.55316651E-05,
-        "rotY": 359.985352,
-        "rotZ": 0.0192198735,
+        "posX": -12.1031475,
+        "posY": 1.0608511,
+        "posZ": 27.624752,
+        "rotX": 0.004029188,
+        "rotY": 359.985382,
+        "rotZ": 0.0144579485,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8029,9 +7935,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1919961,
+        "r": 0.191996038,
         "g": 0.701,
-        "b": 0.167996109
+        "b": 0.167996049
       },
       "Locked": false,
       "Grid": false,
@@ -8061,12 +7967,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.0657492,
-        "posY": 1.06142271,
-        "posZ": 29.2827854,
-        "rotX": 0.004083049,
-        "rotY": 359.982422,
-        "rotZ": 0.0176589713,
+        "posX": -10.0657377,
+        "posY": 1.06132007,
+        "posZ": 29.2827873,
+        "rotX": 0.00110546639,
+        "rotY": 359.982483,
+        "rotZ": 0.0138800768,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8075,9 +7981,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1919961,
+        "r": 0.191996038,
         "g": 0.701,
-        "b": 0.167996109
+        "b": 0.167996049
       },
       "Locked": false,
       "Grid": false,
@@ -8107,12 +8013,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.5169182,
-        "posY": 1.06126726,
-        "posZ": 27.6161385,
-        "rotX": -0.00200323155,
-        "rotY": 359.983734,
-        "rotZ": 0.0192400813,
+        "posX": -10.5169086,
+        "posY": 1.0611397,
+        "posZ": 27.6161442,
+        "rotX": 0.003426081,
+        "rotY": 359.984,
+        "rotZ": 0.0128803672,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8121,9 +8027,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1919961,
+        "r": 0.191996038,
         "g": 0.701,
-        "b": 0.167996109
+        "b": 0.167996049
       },
       "Locked": false,
       "Grid": false,
@@ -8153,12 +8059,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.5581026,
-        "posY": 1.06064117,
-        "posZ": 29.3022327,
-        "rotX": 0.00117199577,
+        "posX": -12.558094,
+        "posY": 1.06062162,
+        "posZ": 29.3022423,
+        "rotX": 0.00509998342,
         "rotY": 359.9832,
-        "rotZ": 0.0183961522,
+        "rotZ": 0.0157369524,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8167,9 +8073,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1919961,
+        "r": 0.191996038,
         "g": 0.701,
-        "b": 0.167996109
+        "b": 0.167996049
       },
       "Locked": false,
       "Grid": false,
@@ -8199,12 +8105,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.6727972,
-        "posY": 1.06129777,
-        "posZ": 29.1646671,
-        "rotX": 0.00376107381,
-        "rotY": 359.98407,
-        "rotZ": 0.0142622991,
+        "posX": 13.6727905,
+        "posY": 1.06141615,
+        "posZ": 29.1646614,
+        "rotX": 0.00350942579,
+        "rotY": 359.984253,
+        "rotZ": 0.0188488588,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8213,7 +8119,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117996074,
+        "r": 0.117996,
         "g": 0.53,
         "b": 1.0
       },
@@ -8245,12 +8151,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 11.4244919,
-        "posY": 1.06066668,
-        "posZ": 27.8094482,
-        "rotX": 0.006777867,
-        "rotY": 359.981,
-        "rotZ": 0.01656168,
+        "posX": 11.4244852,
+        "posY": 1.06057012,
+        "posZ": 27.80944,
+        "rotX": -0.00077538233,
+        "rotY": 359.9813,
+        "rotZ": 0.01887825,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8259,7 +8165,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117996074,
+        "r": 0.117996,
         "g": 0.53,
         "b": 1.0
       },
@@ -8291,12 +8197,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 11.0631561,
-        "posY": 1.06067657,
-        "posZ": 29.1649761,
-        "rotX": 0.006593202,
-        "rotY": 359.981262,
-        "rotZ": 0.0156213986,
+        "posX": 11.0631485,
+        "posY": 1.06062067,
+        "posZ": 29.1649685,
+        "rotX": -0.0012085326,
+        "rotY": 359.981232,
+        "rotZ": 0.020371085,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8305,7 +8211,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117996074,
+        "r": 0.117996,
         "g": 0.53,
         "b": 1.0
       },
@@ -8337,12 +8243,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.3110657,
-        "posY": 1.06128359,
-        "posZ": 27.8092613,
-        "rotX": 0.00302059622,
+        "posX": 13.3110571,
+        "posY": 1.06130433,
+        "posZ": 27.8092518,
+        "rotX": -0.00204619067,
         "rotY": 359.9823,
-        "rotZ": 0.0148947239,
+        "rotZ": 0.0190452412,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8351,7 +8257,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117996074,
+        "r": 0.117996,
         "g": 0.53,
         "b": 1.0
       },
@@ -8383,12 +8289,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 47.27752,
-        "posY": 1.0603838,
-        "posZ": 9.881888,
-        "rotX": 0.00158619392,
-        "rotY": 270.0112,
-        "rotZ": 359.9801,
+        "posX": 47.2774849,
+        "posY": 1.06121,
+        "posZ": 9.881858,
+        "rotX": 0.0133146634,
+        "rotY": 270.01123,
+        "rotZ": 0.004583471,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8398,7 +8304,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124996074,
+        "g": 0.124996,
         "b": 0.941
       },
       "Locked": false,
@@ -8429,12 +8335,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 45.4745,
-        "posY": 1.06103086,
-        "posZ": 9.235773,
-        "rotX": 359.986938,
-        "rotY": 270.0116,
-        "rotZ": 359.987854,
+        "posX": 45.47446,
+        "posY": 1.06084168,
+        "posZ": 9.235745,
+        "rotX": 0.01159878,
+        "rotY": 270.01123,
+        "rotZ": 0.003897538,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8444,7 +8350,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124996074,
+        "g": 0.124996,
         "b": 0.941
       },
       "Locked": false,
@@ -8475,12 +8381,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 45.7293968,
-        "posY": 1.06119788,
-        "posZ": 7.662326,
-        "rotX": -0.00341608841,
-        "rotY": 269.99707,
-        "rotZ": 359.988831,
+        "posX": 45.7293625,
+        "posY": 1.06073248,
+        "posZ": 7.6622963,
+        "rotX": 0.0145122278,
+        "rotY": 269.9967,
+        "rotZ": 0.00503476,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8490,7 +8396,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124996074,
+        "g": 0.124996,
         "b": 0.941
       },
       "Locked": false,
@@ -8521,12 +8427,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 47.0777855,
-        "posY": 1.06109846,
-        "posZ": 7.305246,
-        "rotX": -0.005506137,
-        "rotY": 269.990845,
-        "rotZ": -0.004953375,
+        "posX": 47.077755,
+        "posY": 1.06101525,
+        "posZ": 7.305222,
+        "rotX": 0.0112576075,
+        "rotY": 269.9909,
+        "rotZ": 0.003930348,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8536,7 +8442,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124996074,
+        "g": 0.124996,
         "b": 0.941
       },
       "Locked": false,
@@ -8570,7 +8476,7 @@
         "posX": 14.0146847,
         "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": -4.175282E-07,
+        "rotX": 6.01110571E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8618,8 +8524,8 @@
         "posX": 13.3480854,
         "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": 1.65519737E-06,
-        "rotY": 1.70754731E-06,
+        "rotX": -1.91840263E-06,
+        "rotY": 1.7075472E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
@@ -8666,7 +8572,7 @@
         "posX": 12.6814861,
         "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": -1.55960311E-06,
+        "rotX": 5.7098157E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8714,7 +8620,7 @@
         "posX": 12.0149975,
         "posY": 1.06121707,
         "posZ": 31.47621,
-        "rotX": 7.295265E-07,
+        "rotX": 9.12410144E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8762,8 +8668,8 @@
         "posX": 11.3488274,
         "posY": 1.06121707,
         "posZ": 31.47626,
-        "rotX": 5.92762547E-07,
-        "rotY": 1.70754731E-06,
+        "rotX": 3.35098184E-06,
+        "rotY": 1.7075472E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
@@ -8810,7 +8716,7 @@
         "posX": 10.68103,
         "posY": 1.06121707,
         "posZ": 31.47624,
-        "rotX": -1.74099171E-06,
+        "rotX": -2.2615277E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8858,7 +8764,7 @@
         "posX": -11.6709108,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -5.180333E-07,
+        "rotX": 2.10337953E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8904,9 +8810,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -9.671111,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.454319,
-        "rotX": -9.628768E-07,
+        "rotX": 1.39425606E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8954,7 +8860,7 @@
         "posX": -10.33771,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": 9.29990051E-07,
+        "rotX": -1.25559757E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9000,9 +8906,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -11.0043116,
-        "posY": 1.06121719,
+        "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -3.94500967E-06,
+        "rotX": -1.491945E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9048,9 +8954,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -13.0041113,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.454319,
-        "rotX": -6.017042E-07,
+        "rotX": -1.11290444E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9096,9 +9002,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -12.33751,
-        "posY": 1.06121719,
+        "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -1.986068E-06,
+        "rotX": 1.40962845E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9146,9 +9052,9 @@
         "posX": -49.50179,
         "posY": 0.965223134,
         "posZ": 11.1145964,
-        "rotX": -6.538514E-07,
+        "rotX": 2.48970559E-06,
         "rotY": 269.999969,
-        "rotZ": 4.99018768E-07,
+        "rotZ": 1.17101979E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9192,11 +9098,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.50182,
-        "posY": 0.965223,
+        "posY": 0.965223134,
         "posZ": 10.4460421,
-        "rotX": -1.971916E-06,
+        "rotX": 5.32006254E-07,
         "rotY": 269.999969,
-        "rotZ": -1.47024832E-06,
+        "rotZ": 1.3770599E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9240,11 +9146,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.5018044,
-        "posY": 0.965223,
+        "posY": 0.965223134,
         "posZ": 9.780419,
-        "rotX": -2.2070767E-06,
+        "rotX": -8.281559E-08,
         "rotY": 269.999969,
-        "rotZ": -1.63435561E-06,
+        "rotZ": 1.08343488E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9290,9 +9196,9 @@
         "posX": -49.5018044,
         "posY": 0.965223,
         "posZ": 9.11382,
-        "rotX": 1.07373535E-06,
+        "rotX": 1.17816467E-06,
         "rotY": 269.999969,
-        "rotZ": -2.0061666E-06,
+        "rotZ": -2.022696E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9338,9 +9244,9 @@
         "posX": -49.5018044,
         "posY": 0.965223134,
         "posZ": 8.447219,
-        "rotX": -5.766717E-07,
+        "rotX": -5.943152E-07,
         "rotY": 269.999969,
-        "rotZ": 3.67964873E-07,
+        "rotZ": 1.916827E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9386,9 +9292,9 @@
         "posX": -49.5018044,
         "posY": 0.965223134,
         "posZ": 7.78062,
-        "rotX": -4.303614E-07,
+        "rotX": 2.911352E-06,
         "rotY": 269.999969,
-        "rotZ": -2.61011724E-06,
+        "rotZ": 2.20823381E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9432,9 +9338,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -30.0657082,
-        "posY": 1.061217,
+        "posY": 1.06121683,
         "posZ": -31.4517136,
-        "rotX": 6.61545E-07,
+        "rotX": 4.8623707E-07,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9482,7 +9388,7 @@
         "posX": -29.3991089,
         "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 4.44488222E-07,
+        "rotX": -3.22628853E-06,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9530,7 +9436,7 @@
         "posX": -28.73251,
         "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": -6.636219E-07,
+        "rotX": 1.78762809E-06,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9578,7 +9484,7 @@
         "posX": -28.0659065,
         "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": -1.00481532E-06,
+        "rotX": -1.10974372E-06,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9624,9 +9530,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -27.3993073,
-        "posY": 1.06121683,
+        "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 4.3841203E-07,
+        "rotX": 9.593606E-07,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9674,7 +9580,7 @@
         "posX": -26.732708,
         "posY": 1.061217,
         "posZ": -31.4517117,
-        "rotX": 9.507493E-08,
+        "rotX": 4.57056E-06,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9720,11 +9626,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 26.8405552,
-        "posY": 0.961217,
+        "posY": 0.961216867,
         "posZ": -31.479126,
-        "rotX": 7.72098133E-07,
+        "rotX": 9.32140267E-07,
         "rotY": 180.000275,
-        "rotZ": 1.57102818E-06,
+        "rotZ": 1.41377984E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9770,9 +9676,9 @@
         "posX": 27.5071545,
         "posY": 0.961216867,
         "posZ": -31.479126,
-        "rotX": 4.70386652E-07,
+        "rotX": -2.31415E-06,
         "rotY": 180.000275,
-        "rotZ": 2.37989138E-06,
+        "rotZ": 1.3377188E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9818,9 +9724,9 @@
         "posX": 28.1737537,
         "posY": 0.961216867,
         "posZ": -31.479126,
-        "rotX": -2.939138E-07,
+        "rotX": 2.60041088E-06,
         "rotY": 179.985809,
-        "rotZ": -1.22476467E-06,
+        "rotZ": -4.4776354E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9864,11 +9770,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 28.840353,
-        "posY": 0.961216867,
+        "posY": 0.961217,
         "posZ": -31.479126,
-        "rotX": -1.01568389E-07,
+        "rotX": 1.979289E-06,
         "rotY": 179.9992,
-        "rotZ": -6.94327753E-07,
+        "rotZ": -4.440388E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9914,9 +9820,9 @@
         "posX": 29.5065327,
         "posY": 0.961216867,
         "posZ": -31.4794178,
-        "rotX": -2.243952E-06,
+        "rotX": 5.41835334E-07,
         "rotY": 179.980438,
-        "rotZ": -1.01567883E-08,
+        "rotZ": 7.771714E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9962,9 +9868,9 @@
         "posX": 30.16976,
         "posY": 0.961216867,
         "posZ": -31.4784431,
-        "rotX": -1.09544294E-06,
+        "rotX": 1.19642812E-06,
         "rotY": 180.019882,
-        "rotZ": -1.95246275E-06,
+        "rotZ": -2.68549854E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10008,11 +9914,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 49.3990364,
-        "posY": 0.9612171,
+        "posY": 0.9612172,
         "posZ": 6.968291,
-        "rotX": 1.08901725E-06,
+        "rotX": 1.214557E-06,
         "rotY": 89.99997,
-        "rotZ": 4.76019721E-07,
+        "rotZ": 4.99305656E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10058,9 +9964,9 @@
         "posX": 49.3990364,
         "posY": 0.9612172,
         "posZ": 7.63489056,
-        "rotX": -1.87226283E-06,
+        "rotX": -1.45253409E-06,
         "rotY": 89.99997,
-        "rotZ": 1.00747809E-06,
+        "rotZ": 7.378172E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10106,9 +10012,9 @@
         "posX": 49.3990364,
         "posY": 0.9612172,
         "posZ": 8.301491,
-        "rotX": -8.152002E-07,
+        "rotX": -9.28513657E-07,
         "rotY": 89.99996,
-        "rotZ": -3.5503453E-07,
+        "rotZ": -3.728912E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10152,11 +10058,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 49.3990364,
-        "posY": 0.9612172,
+        "posY": 0.9612171,
         "posZ": 8.968091,
-        "rotX": -1.11037161E-06,
+        "rotX": -2.58859222E-06,
         "rotY": 89.99997,
-        "rotZ": -1.14422E-06,
+        "rotZ": 1.62583365E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10202,9 +10108,9 @@
         "posX": 49.39903,
         "posY": 0.961217,
         "posZ": 9.634694,
-        "rotX": -2.010911E-06,
+        "rotX": -2.879188E-06,
         "rotY": 89.99974,
-        "rotZ": -9.671024E-08,
+        "rotZ": 1.34802315E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10250,9 +10156,9 @@
         "posX": 49.3990364,
         "posY": 0.9612172,
         "posZ": 10.3012905,
-        "rotX": -7.958927E-07,
+        "rotX": -1.30907017E-06,
         "rotY": 89.99996,
-        "rotZ": -3.39972473E-07,
+        "rotZ": -2.06916539E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10298,9 +10204,9 @@
         "posX": 50.6560059,
         "posY": 0.961217642,
         "posZ": 31.7162724,
-        "rotX": 1.45327768E-08,
+        "rotX": -1.25146071E-08,
         "rotY": 179.971878,
-        "rotZ": -2.95962721E-09,
+        "rotZ": 1.12397958E-08,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -11590,9 +11496,9 @@
         "posX": -42.5533524,
         "posY": 0.9642482,
         "posZ": 31.56133,
-        "rotX": -1.22067632E-07,
+        "rotX": 1.318118E-08,
         "rotY": 180.000137,
-        "rotZ": 0.043810714,
+        "rotZ": 0.0438107252,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -12882,9 +12788,9 @@
         "posX": 42.45366,
         "posY": 0.9612175,
         "posZ": 31.77036,
-        "rotX": -2.27176159E-07,
+        "rotX": -7.27661529E-07,
         "rotY": 180.000992,
-        "rotZ": -3.355525E-06,
+        "rotZ": -2.73863543E-06,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -14174,9 +14080,9 @@
         "posX": -50.6406822,
         "posY": 0.965223551,
         "posZ": 31.58595,
-        "rotX": 2.96337372E-08,
+        "rotX": 2.87006667E-08,
         "rotY": 179.999939,
-        "rotZ": -3.31951426E-08,
+        "rotZ": -2.12587E-08,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -15546,11 +15452,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 46.6322174,
-        "posY": 0.9612176,
+        "posY": 0.9612175,
         "posZ": -31.436697,
-        "rotX": 4.825738E-07,
+        "rotX": 5.699093E-07,
         "rotY": 180.000046,
-        "rotZ": -2.84480529E-06,
+        "rotZ": -2.756279E-07,
         "scaleX": 5.945577,
         "scaleY": 1.0,
         "scaleZ": 5.945577
@@ -15642,11 +15548,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -9.690127,
-        "posY": 0.859443843,
+        "posY": 0.8594448,
         "posZ": -35.6979752,
-        "rotX": -7.19322225E-06,
-        "rotY": 0.0371918865,
-        "rotZ": -1.50310871E-06,
+        "rotX": -7.19488844E-06,
+        "rotY": 0.0371918753,
+        "rotZ": -1.50644428E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -15656,8 +15562,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999957,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399954
       },
       "Locked": true,
       "Grid": false,
@@ -16738,11 +16644,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -8.39013,
-        "posY": 0.859439552,
+        "posY": 0.859439433,
         "posZ": -35.6979675,
-        "rotX": 1.14378936E-05,
-        "rotY": 0.0434950739,
-        "rotZ": -8.611049E-07,
+        "rotX": 1.35723249E-05,
+        "rotY": 0.043495357,
+        "rotZ": -8.5362467E-07,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -16752,8 +16658,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391999543,
-        "b": 0.112999551
+        "g": 0.3919995,
+        "b": 0.112999521
       },
       "Locked": true,
       "Grid": false,
@@ -17836,9 +17742,9 @@
         "posX": -7.09013033,
         "posY": 0.8594333,
         "posZ": -35.69797,
-        "rotX": -8.89035E-06,
-        "rotY": 0.03564777,
-        "rotZ": -2.90259482E-06,
+        "rotX": -8.90169E-06,
+        "rotY": 0.0356476866,
+        "rotZ": -3.96814767E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -17849,7 +17755,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999574
+        "b": 0.171999544
       },
       "Locked": true,
       "Grid": false,
@@ -18138,11 +18044,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -5.79013443,
-        "posY": 0.859458,
+        "posY": 0.85945946,
         "posZ": -35.69796,
-        "rotX": -1.16854764E-07,
-        "rotY": 0.0467504561,
-        "rotZ": 3.13447373E-07,
+        "rotX": -1.18521619E-07,
+        "rotY": 0.04675051,
+        "rotZ": 3.117792E-07,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -18151,9 +18057,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999555,
+        "r": 0.191999525,
         "g": 0.701,
-        "b": 0.167999566
+        "b": 0.167999536
       },
       "Locked": true,
       "Grid": false,
@@ -18895,9 +18801,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999553,
-        "g": 0.249999553,
-        "b": 0.249999553
+        "r": 0.249999523,
+        "g": 0.249999523,
+        "b": 0.249999523
       },
       "Locked": true,
       "Grid": false,
@@ -19100,11 +19006,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -4.49013329,
-        "posY": 0.8594274,
+        "posY": 0.859427869,
         "posZ": -35.6979675,
-        "rotX": -9.625497E-06,
-        "rotY": 0.0527672842,
-        "rotZ": -9.702766E-06,
+        "rotX": -1.17949467E-05,
+        "rotY": 0.052767124,
+        "rotZ": -9.715441E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -19113,7 +19019,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999561,
+        "r": 0.117999531,
         "g": 0.53,
         "b": 1.0
       },
@@ -19535,12 +19441,12 @@
     {
       "Name": "Bag",
       "Transform": {
-        "posX": -3.190147,
-        "posY": 0.859410167,
+        "posX": -3.1901474,
+        "posY": 0.859404743,
         "posZ": -35.6979446,
-        "rotX": 6.63897526E-06,
-        "rotY": 0.0508110635,
-        "rotZ": 2.515906E-06,
+        "rotX": 7.04733066E-06,
+        "rotY": 0.0508111268,
+        "rotZ": 2.94130632E-06,
         "scaleX": 0.5500004,
         "scaleY": 0.5500004,
         "scaleZ": 0.5500004
@@ -19550,7 +19456,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499956,
+        "g": 0.124999531,
         "b": 0.941
       },
       "Locked": true,
@@ -19839,12 +19745,12 @@
     {
       "Name": "Bag",
       "Transform": {
-        "posX": -1.8886354,
-        "posY": 0.859417856,
+        "posX": -1.88863575,
+        "posY": 0.859414458,
         "posZ": -35.69781,
-        "rotX": -1.49073088E-07,
+        "rotX": -1.6549258E-07,
         "rotY": 359.972351,
-        "rotZ": 1.10774135E-05,
+        "rotZ": 1.21379653E-05,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -19854,7 +19760,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.959999859,
-        "g": 0.438999563,
+        "g": 0.438999534,
         "b": 0.807000041
       },
       "Locked": true,
@@ -20144,11 +20050,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 4.611296,
-        "posY": 0.8594467,
+        "posY": 0.8594453,
         "posZ": -35.69821,
-        "rotX": -7.17569037E-07,
-        "rotY": 0.01407487,
-        "rotZ": -9.239852E-06,
+        "rotX": -7.1089994E-07,
+        "rotY": 0.0140746105,
+        "rotZ": -9.231514E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -20157,9 +20063,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999553,
-        "g": 0.249999553,
-        "b": 0.249999553
+        "r": 0.249999523,
+        "g": 0.249999523,
+        "b": 0.249999523
       },
       "Locked": true,
       "Grid": false,
@@ -20637,9 +20543,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999553,
-        "g": 0.249999553,
-        "b": 0.249999553
+        "r": 0.249999523,
+        "g": 0.249999523,
+        "b": 0.249999523
       },
       "Locked": true,
       "Grid": false,
@@ -20708,11 +20614,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 0.711421251,
-        "posY": 0.859434366,
+        "posY": 0.8594349,
         "posZ": -35.6982841,
-        "rotX": 1.13994347E-05,
-        "rotY": 0.00477430224,
-        "rotZ": -5.32894E-06,
+        "rotX": 1.35372029E-05,
+        "rotY": 0.004774209,
+        "rotZ": -5.312176E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -21852,11 +21758,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 5.96397638,
-        "posY": 0.859435856,
+        "posY": 0.8594358,
         "posZ": -35.72796,
-        "rotX": 1.60671163E-06,
+        "rotX": 1.60004151E-06,
         "rotY": 0.014098431,
-        "rotZ": -7.180172E-06,
+        "rotZ": -7.180173E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -21865,9 +21771,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999523,
-        "g": 0.249999523,
-        "b": 0.249999523
+        "r": 0.2499995,
+        "g": 0.2499995,
+        "b": 0.2499995
       },
       "Locked": true,
       "Grid": false,
@@ -23002,11 +22908,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -0.5901085,
-        "posY": 0.859419644,
+        "posY": 0.85941565,
         "posZ": -35.6979942,
-        "rotX": 8.928496E-06,
+        "rotX": 8.922188E-06,
         "rotY": 359.96106,
-        "rotZ": 1.6394788E-06,
+        "rotZ": 2.70669761E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -23015,7 +22921,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128999621,
+        "r": 0.128999591,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -23826,9 +23732,9 @@
         "posX": -50.14326,
         "posY": 0.9652235,
         "posZ": -31.56195,
-        "rotX": 2.74026029E-08,
+        "rotX": 2.96376452E-08,
         "rotY": 180.014862,
-        "rotZ": 3.52912433E-09,
+        "rotZ": -3.50013929E-09,
         "scaleX": 5.946227,
         "scaleY": 1.0,
         "scaleZ": 5.946227
@@ -25066,8 +24972,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25162,8 +25068,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25258,8 +25164,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25354,8 +25260,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25450,8 +25356,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25546,8 +25452,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25642,8 +25548,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25725,7 +25631,7 @@
       "Transform": {
         "posX": -34.1065826,
         "posY": 1.34871662,
-        "posZ": -27.623251,
+        "posZ": -27.6231174,
         "rotX": 90.0,
         "rotY": 359.502319,
         "rotZ": 0.0,
@@ -25738,8 +25644,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999996,
-        "b": 0.09399957
+        "g": 0.09999954,
+        "b": 0.09399951
       },
       "Locked": false,
       "Grid": false,
@@ -25835,7 +25741,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -25931,7 +25837,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26027,7 +25933,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26123,7 +26029,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26204,8 +26110,8 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.18554,
-        "posY": 1.35272324,
-        "posZ": 4.1854105,
+        "posY": 1.35272312,
+        "posZ": 4.18554449,
         "rotX": 90.0,
         "rotY": 359.504242,
         "rotZ": 0.0,
@@ -26219,7 +26125,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26315,7 +26221,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26396,7 +26302,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.9974251,
-        "posY": 1.35272312,
+        "posY": 1.35272324,
         "posZ": 5.803379,
         "rotX": 90.0,
         "rotY": 359.501953,
@@ -26411,7 +26317,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26507,7 +26413,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719996
+        "b": 0.171999544
       },
       "Locked": false,
       "Grid": false,
@@ -26601,9 +26507,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -26697,9 +26603,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -26793,9 +26699,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -26889,9 +26795,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -26985,9 +26891,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -27067,9 +26973,9 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -15.5766621,
+        "posX": -15.576663,
         "posY": 1.34871674,
-        "posZ": 26.6517811,
+        "posZ": 26.6519146,
         "rotX": 90.0,
         "rotY": 359.48703,
         "rotZ": 0.0,
@@ -27081,9 +26987,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -27177,9 +27083,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -27273,9 +27179,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999614,
+        "r": 0.191999555,
         "g": 0.701,
-        "b": 0.1679996
+        "b": 0.167999536
       },
       "Locked": false,
       "Grid": false,
@@ -27355,9 +27261,9 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 17.210331,
+        "posX": 17.21033,
         "posY": 1.34871674,
-        "posZ": 27.7752342,
+        "posZ": 27.7753677,
         "rotX": 90.0,
         "rotY": 359.502533,
         "rotZ": 0.0,
@@ -27369,7 +27275,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27465,7 +27371,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27561,7 +27467,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27657,7 +27563,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27753,7 +27659,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27849,7 +27755,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -27945,7 +27851,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -28041,7 +27947,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999606,
+        "r": 0.117999546,
         "g": 0.53,
         "b": 1.0
       },
@@ -28127,7 +28033,7 @@
         "posY": 1.34871757,
         "posZ": 3.30011845,
         "rotX": 90.0,
-        "rotY": 359.504333,
+        "rotY": 359.504364,
         "rotZ": 0.0,
         "scaleX": 1.54999959,
         "scaleY": 1.54999959,
@@ -28138,7 +28044,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28220,7 +28126,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 45.28449,
-        "posY": 1.34871745,
+        "posY": 1.34871733,
         "posZ": 4.92241764,
         "rotX": 90.0,
         "rotY": 359.503357,
@@ -28234,7 +28140,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28330,7 +28236,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28426,7 +28332,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28522,7 +28428,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28618,7 +28524,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28700,7 +28606,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.0958176,
-        "posY": 1.34871721,
+        "posY": 1.34871733,
         "posZ": 2.48019528,
         "rotX": 90.0,
         "rotY": 359.503571,
@@ -28714,7 +28620,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28810,7 +28716,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999605,
+        "g": 0.124999546,
         "b": 0.941
       },
       "Locked": false,
@@ -28894,7 +28800,7 @@
         "posX": -16.0000057,
         "posY": 1.30948472,
         "posZ": -27.9998055,
-        "rotX": 5.59345725E-09,
+        "rotX": 8.796753E-08,
         "rotY": 180.0,
         "rotZ": 180.0,
         "scaleX": 1.25705588,
@@ -32355,7 +32261,7 @@
         "posZ": 12.0,
         "rotX": -8.042294E-07,
         "rotY": 179.960144,
-        "rotZ": 3.896363E-06,
+        "rotZ": 3.896362E-06,
         "scaleX": 1.25705588,
         "scaleY": 1.0,
         "scaleZ": 1.25705588
@@ -32494,12 +32400,12 @@
     {
       "Name": "Custom_Dice",
       "Transform": {
-        "posX": 0.157062918,
-        "posY": 1.868013,
-        "posZ": -0.138980314,
-        "rotX": 26.5650253,
-        "rotY": 0.000198545909,
-        "rotZ": 72.0000458,
+        "posX": 0.15706183,
+        "posY": 1.8680135,
+        "posZ": -0.138981387,
+        "rotX": 26.5650177,
+        "rotY": 0.000134591217,
+        "rotZ": 72.00004,
         "scaleX": 2.14999914,
         "scaleY": 2.14999914,
         "scaleZ": 2.14999914
@@ -32687,9 +32593,9 @@
         "posX": -19.21851,
         "posY": 1.172756,
         "posZ": -16.8177757,
-        "rotX": 1.2523501E-06,
+        "rotX": 1.13587078E-06,
         "rotY": 359.986359,
-        "rotZ": -4.270855E-07,
+        "rotZ": -4.270716E-07,
         "scaleX": 0.6750002,
         "scaleY": 0.6750002,
         "scaleZ": 0.6750002
@@ -32729,9 +32635,9 @@
         "posX": -20.4750519,
         "posY": 1.172756,
         "posZ": -16.79464,
-        "rotX": 6.029347E-07,
+        "rotX": 7.80526761E-07,
         "rotY": 359.978027,
-        "rotZ": -4.27081943E-07,
+        "rotZ": -4.27116078E-07,
         "scaleX": 0.6750002,
         "scaleY": 0.6750002,
         "scaleZ": 0.6750002
@@ -32741,8 +32647,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999905,
-        "b": 0.0939990655
+        "g": 0.09999903,
+        "b": 0.09399905
       },
       "Locked": false,
       "Grid": false,
@@ -32771,9 +32677,9 @@
         "posX": -19.13486,
         "posY": 1.16022754,
         "posZ": -15.661231,
-        "rotX": 7.561598E-07,
+        "rotX": 6.4295665E-07,
         "rotY": 89.99228,
-        "rotZ": 5.52828737E-07,
+        "rotZ": 4.39641E-07,
         "scaleX": 0.6000003,
         "scaleY": 0.6000003,
         "scaleZ": 0.6000003
@@ -32783,7 +32689,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124998964,
+        "g": 0.124998935,
         "b": 0.941
       },
       "Locked": false,
@@ -32813,9 +32719,9 @@
         "posX": -19.8081322,
         "posY": 1.16022754,
         "posZ": -14.7884321,
-        "rotX": 7.677192E-07,
-        "rotY": -0.0009068522,
-        "rotZ": -5.33618E-07,
+        "rotX": 1.05586514E-06,
+        "rotY": -0.000906861154,
+        "rotZ": -5.336203E-07,
         "scaleX": 0.6000003,
         "scaleY": 0.6000003,
         "scaleZ": 0.6000003
@@ -32824,7 +32730,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999025,
+        "r": 0.117998995,
         "g": 0.53,
         "b": 1.0
       },
@@ -32855,9 +32761,9 @@
         "posX": -20.8681374,
         "posY": 1.14769912,
         "posZ": -14.7655659,
-        "rotX": 8.10913036E-07,
+        "rotX": 1.06975745E-06,
         "rotY": 359.9864,
-        "rotZ": -4.27032575E-07,
+        "rotZ": -4.27063355E-07,
         "scaleX": 0.525000334,
         "scaleY": 0.525000334,
         "scaleZ": 0.525000334
@@ -32866,9 +32772,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191998929,
+        "r": 0.1919989,
         "g": 0.701,
-        "b": 0.16799894
+        "b": 0.16799891
       },
       "Locked": false,
       "Grid": false,
@@ -32897,9 +32803,9 @@
         "posX": -20.7238541,
         "posY": 1.14769924,
         "posZ": -15.723258,
-        "rotX": 6.05241269E-07,
+        "rotX": 4.543395E-07,
         "rotY": 89.99032,
-        "rotZ": 8.546857E-07,
+        "rotZ": 1.156553E-06,
         "scaleX": 0.525000334,
         "scaleY": 0.525000334,
         "scaleZ": 0.525000334
@@ -32910,7 +32816,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999484
+        "b": 0.171999454
       },
       "Locked": false,
       "Grid": false,
@@ -32932,6 +32838,102 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "4feb68"
+    },
+    {
+      "Name": "Card",
+      "Transform": {
+        "posX": 29.4534,
+        "posY": 3.03293037,
+        "posZ": -34.36184,
+        "rotX": -3.96621624E-09,
+        "rotY": 180.0,
+        "rotZ": -9.867128E-09,
+        "scaleX": 1.70230925,
+        "scaleY": 1.0,
+        "scaleZ": 1.70230925
+      },
+      "Nickname": "Book",
+      "Description": "Omen",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": 15902,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "159": {
+          "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+          "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+          "NumWidth": 7,
+          "NumHeight": 3,
+          "BackIsHidden": true,
+          "UniqueBack": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "2ab044"
+    },
+    {
+      "Name": "Card",
+      "Transform": {
+        "posX": 32.17912,
+        "posY": 3.13293028,
+        "posZ": -34.36184,
+        "rotX": -6.160871E-08,
+        "rotY": 180.0,
+        "rotZ": 1.3118111E-07,
+        "scaleX": 1.70230925,
+        "scaleY": 1.0,
+        "scaleZ": 1.70230925
+      },
+      "Nickname": "Letter",
+      "Description": "Omen",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0
+      },
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": 15910,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "159": {
+          "FaceURL": "http://i.imgur.com/nEtfGwg.jpg",
+          "BackURL": "http://i.imgur.com/Cc1sVR5.jpg",
+          "NumWidth": 7,
+          "NumHeight": 3,
+          "BackIsHidden": true,
+          "UniqueBack": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "243838"
     }
   ],
   "SnapPoints": [
