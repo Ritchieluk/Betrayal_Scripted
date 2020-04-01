@@ -1,0 +1,550 @@
+[{
+    "description": "",
+    "gm_notes": "",
+    "guid": "3f889d",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Panic Room",
+    "nickname": "Panic Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "57945e",
+    "index": 1,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dusty Hallway",
+    "nickname": "Dusty Hallway"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "796e02",
+    "index": 2,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Creaky Hallway",
+    "nickname": "Creaky Hallway"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "2bf859",
+    "index": 3,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Game Room",
+    "nickname": "Game Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "9b16cd",
+    "index": 4,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Junk Room",
+    "nickname": "Junk Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "27f993",
+    "index": 5,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Mystic Elevator",
+    "nickname": "Mystic Elevator"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "81ce33",
+    "index": 6,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Organ Room",
+    "nickname": "Organ Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "d4ec2c",
+    "index": 7,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Statuary Corridor",
+    "nickname": "Statuary Corridor"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "03d187",
+    "index": 8,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Spiral Staircase",
+    "nickname": "Spiral Staircase"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "7d5d22",
+    "index": 9,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Study",
+    "nickname": "Study"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "bb37ba",
+    "index": 10,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Locked Room",
+    "nickname": "Locked Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "be07fb",
+    "index": 11,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Drawing Room",
+    "nickname": "Drawing Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "52ab25",
+    "index": 12,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Nursery",
+    "nickname": "Nursery"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "8a214d",
+    "index": 13,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Sewing Room",
+    "nickname": "Sewing Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "8c55dc",
+    "index": 14,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Solarium",
+    "nickname": "Solarium"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "99ef54",
+    "index": 15,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Widow's Walk",
+    "nickname": "Widow's Walk"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "07fe67",
+    "index": 16,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Rookery",
+    "nickname": "Rookery"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "ca093f",
+    "index": 17,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Gymnasium",
+    "nickname": "Gymnasium"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "3025c7",
+    "index": 18,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Operating Laboratory",
+    "nickname": "Operating Laboratory"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "e998ae",
+    "index": 19,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Research Laboratory",
+    "nickname": "Research Laboratory"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "5921ad",
+    "index": 20,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Servants' Quarters",
+    "nickname": "Servants' Quarters"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "a9385a",
+    "index": 21,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Storeroom",
+    "nickname": "Storeroom"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "3f3168",
+    "index": 22,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Vault",
+    "nickname": "Vault"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "64fec3",
+    "index": 23,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Attic",
+    "nickname": "Attic"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "d8c715",
+    "index": 24,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Balcony",
+    "nickname": "Balcony"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "51e6cc",
+    "index": 25,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bedroom",
+    "nickname": "Bedroom"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "6083fe",
+    "index": 26,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Gallery",
+    "nickname": "Gallery"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "94ea56",
+    "index": 27,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Master Bedroom",
+    "nickname": "Master Bedroom"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "507b0e",
+    "index": 28,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Tower",
+    "nickname": "Tower"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "e21eea",
+    "index": 29,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bathroom",
+    "nickname": "Bathroom"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "cde2aa",
+    "index": 30,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bloody Room",
+    "nickname": "Bloody Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "211509",
+    "index": 31,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Chapel",
+    "nickname": "Chapel"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "cf6a10",
+    "index": 32,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Charred Room",
+    "nickname": "Charred Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "d63a62",
+    "index": 33,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Collapsed Room",
+    "nickname": "Collapsed Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "1185b1",
+    "index": 34,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Conservatory",
+    "nickname": "Conservatory"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "2855db",
+    "index": 35,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Library",
+    "nickname": "Library"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "597883",
+    "index": 36,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Theater",
+    "nickname": "Theater"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "4b7ed5",
+    "index": 37,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Ballroom",
+    "nickname": "Ballroom"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "56e19e",
+    "index": 38,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Coal Chute",
+    "nickname": "Coal Chute"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "74df57",
+    "index": 39,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dining Room",
+    "nickname": "Dining Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "f05c91",
+    "index": 40,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Gardens",
+    "nickname": "Gardens"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "7d32c4",
+    "index": 41,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Graveyard",
+    "nickname": "Graveyard"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "4e4f43",
+    "index": 42,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Patio",
+    "nickname": "Patio"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "fc065e",
+    "index": 43,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Tree House",
+    "nickname": "Tree House"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "91219a",
+    "index": 44,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Abandoned Room",
+    "nickname": "Abandoned Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "ba7769",
+    "index": 45,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Arsenal",
+    "nickname": "Arsenal"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "3134e2",
+    "index": 46,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Kitchen",
+    "nickname": "Kitchen"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "b5146d",
+    "index": 47,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Laundry",
+    "nickname": "Laundry"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "f27066",
+    "index": 48,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Menagerie",
+    "nickname": "Menagerie"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "7f16e8",
+    "index": 49,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Catacombs",
+    "nickname": "Catacombs"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "5f9918",
+    "index": 50,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Cave",
+    "nickname": "Cave"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "8e6cf5",
+    "index": 51,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Chasm",
+    "nickname": "Chasm"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "5b83ba",
+    "index": 52,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Crypt",
+    "nickname": "Crypt"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "78125a",
+    "index": 53,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dungeon",
+    "nickname": "Dungeon"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "97c87e",
+    "index": 54,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Furnace Room",
+    "nickname": "Furnace Room"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "faf007",
+    "index": 55,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Larder",
+    "nickname": "Larder"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "45d1d0",
+    "index": 56,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Pentagram Chamber",
+    "nickname": "Pentagram Chamber"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "9f8f6e",
+    "index": 57,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Stairs from Basement",
+    "nickname": "Stairs from Basement"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "88fc2a",
+    "index": 58,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Storm Cellar",
+    "nickname": "Storm Cellar"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "041c2e",
+    "index": 59,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Underground Lake",
+    "nickname": "Underground Lake"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "b87e2e",
+    "index": 60,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Wine Cellar",
+    "nickname": "Wine Cellar"
+}]

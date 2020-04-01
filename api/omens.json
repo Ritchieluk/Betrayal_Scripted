@@ -1,0 +1,190 @@
+[{
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "af9b3b",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Rope",
+    "nickname": "Rope"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "bfd86a",
+    "index": 1,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Spear",
+    "nickname": "Spear"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "5ec533",
+    "index": 2,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Skull",
+    "nickname": "Skull"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "0fa0dd",
+    "index": 3,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Madman",
+    "nickname": "Madman"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "f1b241",
+    "index": 4,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Mask",
+    "nickname": "Mask"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "ce7f74",
+    "index": 5,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Crystal Ball",
+    "nickname": "Crystal Ball"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "c7e981",
+    "index": 6,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Holy Symbol",
+    "nickname": "Holy Symbol"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "ebe34c",
+    "index": 7,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Cat",
+    "nickname": "Cat"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "e605ac",
+    "index": 8,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Spirit Board",
+    "nickname": "Spirit Board"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "c1186a",
+    "index": 9,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Key",
+    "nickname": "Key"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "c20728",
+    "index": 10,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Girl",
+    "nickname": "Girl"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "38980b",
+    "index": 11,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Box",
+    "nickname": "Box"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "d20d06",
+    "index": 12,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bloodstone",
+    "nickname": "Bloodstone"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "929cee",
+    "index": 13,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dog",
+    "nickname": "Dog"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "7b0a1d",
+    "index": 14,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Photograph",
+    "nickname": "Photograph"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "c69fd7",
+    "index": 15,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Ring",
+    "nickname": "Ring"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "4cd192",
+    "index": 16,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Vial",
+    "nickname": "Vial"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "5c528b",
+    "index": 17,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bite",
+    "nickname": "Bite"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "2305a1",
+    "index": 18,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Medallion",
+    "nickname": "Medallion"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "2ab044",
+    "index": 19,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Book",
+    "nickname": "Book"
+}, {
+    "description": "Omen",
+    "gm_notes": "",
+    "guid": "243838",
+    "index": 20,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Letter",
+    "nickname": "Letter"
+}]

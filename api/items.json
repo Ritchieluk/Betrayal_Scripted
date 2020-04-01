@@ -1,0 +1,298 @@
+[{
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "2a9fb8",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Adrenaline Shot",
+    "nickname": "Adrenaline Shot"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "c75a34",
+    "index": 1,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Amulet of the Ages",
+    "nickname": "Amulet of the Ages"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "c223b3",
+    "index": 2,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Angel Feather",
+    "nickname": "Angel Feather"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "50f882",
+    "index": 3,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Armor",
+    "nickname": "Armor"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "d1b10e",
+    "index": 4,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Axe",
+    "nickname": "Axe"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "b7fc50",
+    "index": 5,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bell",
+    "nickname": "Bell"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "307fb3",
+    "index": 6,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Blood Dagger",
+    "nickname": "Blood Dagger"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "fb7653",
+    "index": 7,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Blueprint",
+    "nickname": "Blueprint"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "08e923",
+    "index": 8,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Boomstick",
+    "nickname": "Boomstick"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "cd7941",
+    "index": 9,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bottle",
+    "nickname": "Bottle"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "fe23cf",
+    "index": 10,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Camcorder",
+    "nickname": "Camcorder"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "58e18a",
+    "index": 11,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Candle",
+    "nickname": "Candle"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "6a044a",
+    "index": 12,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Ceremonial Robe",
+    "nickname": "Ceremonial Robe"
+}, {
+    "description": "",
+    "gm_notes": "",
+    "guid": "dd1f90",
+    "index": 13,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Chainsaw",
+    "nickname": "Chainsaw"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "137b5f",
+    "index": 14,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Chalk",
+    "nickname": "Chalk"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "b205e3",
+    "index": 15,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dark Dice",
+    "nickname": "Dark Dice"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "6048c3",
+    "index": 16,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Device",
+    "nickname": "Device"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "9fefbf",
+    "index": 17,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Dynamite",
+    "nickname": "Dynamite"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "a859f2",
+    "index": 18,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Effigy",
+    "nickname": "Effigy"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "3608de",
+    "index": 19,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Healing Salve",
+    "nickname": "Healing Salve"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "1d2c91",
+    "index": 20,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Idol",
+    "nickname": "Idol"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "cd32ba",
+    "index": 21,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Locket",
+    "nickname": "Locket"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "eca0f1",
+    "index": 22,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Lucky Stone",
+    "nickname": "Lucky Stone"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "4eabae",
+    "index": 23,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Medical Kit",
+    "nickname": "Medical Kit"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "5a0fd5",
+    "index": 24,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Music Box",
+    "nickname": "Music Box"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "4c1f9d",
+    "index": 25,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Pickpocket's Gloves",
+    "nickname": "Pickpocket's Gloves"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "428de0",
+    "index": 26,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Puzzle Box",
+    "nickname": "Puzzle Box"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "16523f",
+    "index": 27,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Rabbit's Foot",
+    "nickname": "Rabbit's Foot"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "906701",
+    "index": 28,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Revolver",
+    "nickname": "Revolver"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "be939a",
+    "index": 29,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Sacrificial Dagger",
+    "nickname": "Sacrificial Dagger"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "f82acd",
+    "index": 30,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Smelling Salts",
+    "nickname": "Smelling Salts"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "7a88c6",
+    "index": 31,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Snake Oil",
+    "nickname": "Snake Oil"
+}, {
+    "description": "Item",
+    "gm_notes": "",
+    "guid": "070a33",
+    "index": 32,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Teapot",
+    "nickname": "Teapot"
+}]

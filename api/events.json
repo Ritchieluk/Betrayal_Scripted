@@ -1,0 +1,505 @@
+[{
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "a8519e",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "A Moment of Hope",
+    "nickname": "A Moment of Hope"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "680bfd",
+    "index": 1,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Acupuncture",
+    "nickname": "Acupuncture"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "808e0d",
+    "index": 2,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Angry Being",
+    "nickname": "Angry Being"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "f83d0c",
+    "index": 3,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Bloody Vision",
+    "nickname": "Bloody Vision"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "554b13",
+    "index": 4,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Burial Mound",
+    "nickname": "Burial Mound"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "11eef9",
+    "index": 5,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Burning Man",
+    "nickname": "Burning Man"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "9a5cd9",
+    "index": 6,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Closet Door",
+    "nickname": "Closet Door"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "8410b1",
+    "index": 7,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Contract",
+    "nickname": "Contract"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "c6b777",
+    "index": 8,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Creepy Crawlies",
+    "nickname": "Creepy Crawlies"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "4959b7",
+    "index": 9,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Creepy Puppet",
+    "nickname": "Creepy Puppet"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "47a1f7",
+    "index": 10,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Debris",
+    "nickname": "Debris"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "ad7cec",
+    "index": 11,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Disquieting Sounds",
+    "nickname": "Disquieting Sounds"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "6ff3a8",
+    "index": 12,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Drip... Drip... Drip...",
+    "nickname": "Drip... Drip... Drip..."
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "f06452",
+    "index": 13,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Flytrap",
+    "nickname": "Flytrap"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "de6806",
+    "index": 14,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Footsteps",
+    "nickname": "Footsteps"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "8ed95e",
+    "index": 15,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Funeral",
+    "nickname": "Funeral"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "40ca18",
+    "index": 16,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Ghost in the Machine",
+    "nickname": "Ghost in the Machine"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "074e80",
+    "index": 17,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Grave Dirt",
+    "nickname": "Grave Dirt"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "35b325",
+    "index": 18,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Groundskeeper",
+    "nickname": "Groundskeeper"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "9909c9",
+    "index": 19,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Hanged Men",
+    "nickname": "Hanged Men"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "b47a46",
+    "index": 20,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Hideous Shriek",
+    "nickname": "Hideous Shriek"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "ebd4db",
+    "index": 21,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Image in the Mirror",
+    "nickname": "Image in the Mirror"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "33d509",
+    "index": 22,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Image in the Mirror",
+    "nickname": "Image in the Mirror"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "4cbb24",
+    "index": 23,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "It Is Meant to Be",
+    "nickname": "It Is Meant to Be"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "f45a20",
+    "index": 24,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Johan's Turn",
+    "nickname": "Johan's Turn"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "8f0432",
+    "index": 25,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Lightning Strikes",
+    "nickname": "Lightning Strikes"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "16b28f",
+    "index": 26,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Lights Out",
+    "nickname": "Lights Out"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "47db40",
+    "index": 27,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Locked Safe",
+    "nickname": "Locked Safe"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "569734",
+    "index": 28,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Misty Arch",
+    "nickname": "Misty Arch"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "a2e374",
+    "index": 29,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Mists from the Walls",
+    "nickname": "Mists from the Walls"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d114b5",
+    "index": 30,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Mutant Housepet",
+    "nickname": "Mutant Housepet"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "ed8812",
+    "index": 31,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Mystic Slide",
+    "nickname": "Mystic Slide"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "ef38d0",
+    "index": 32,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Night View",
+    "nickname": "Night View"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d1836a",
+    "index": 33,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Phone Call",
+    "nickname": "Phone Call"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "935307",
+    "index": 34,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Possession",
+    "nickname": "Possession"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "4e5d44",
+    "index": 35,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Revolving Wall",
+    "nickname": "Revolving Wall"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d0232a",
+    "index": 36,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Rotten",
+    "nickname": "Rotten"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "2e01b3",
+    "index": 37,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Secret Passage",
+    "nickname": "Secret Passage"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d1b8be",
+    "index": 38,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Secret Stairs",
+    "nickname": "Secret Stairs"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d802d4",
+    "index": 39,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Shrieking Wind",
+    "nickname": "Shrieking Wind"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "4d682c",
+    "index": 40,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Silence",
+    "nickname": "Silence"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "a39f58",
+    "index": 41,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Skeletons",
+    "nickname": "Skeletons"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "d9233d",
+    "index": 42,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Smoke",
+    "nickname": "Smoke"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "1d0da0",
+    "index": 43,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Something Hidden",
+    "nickname": "Something Hidden"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "c6e9a7",
+    "index": 44,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Something Slimy",
+    "nickname": "Something Slimy"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "206940",
+    "index": 45,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Spider",
+    "nickname": "Spider"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "52c54b",
+    "index": 46,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Beckoning",
+    "nickname": "The Beckoning"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "99410e",
+    "index": 47,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Left Hand",
+    "nickname": "The Left Hand"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "393ba1",
+    "index": 48,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Lost One",
+    "nickname": "The Lost One"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "b904b0",
+    "index": 49,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Voice",
+    "nickname": "The Voice"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "25b278",
+    "index": 50,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Walls",
+    "nickname": "The Walls"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "1cb39e",
+    "index": 51,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "The Walls Have Eyes",
+    "nickname": "The Walls Have Eyes"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "94bd2f",
+    "index": 52,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Webs",
+    "nickname": "Webs"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "06b8a6",
+    "index": 53,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "What the...?",
+    "nickname": "What the...?"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "2b46e8",
+    "index": 54,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "What Year Is It?!",
+    "nickname": "What Year Is It?!"
+}, {
+    "description": "Event",
+    "gm_notes": "",
+    "guid": "4ac925",
+    "index": 55,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Whoops!",
+    "nickname": "Whoops!"
+}]
