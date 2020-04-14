@@ -5,11 +5,27 @@ from os import path
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-main_floor = [][]
+layout = {'entrance': [], 'basement': [], 'upper': [], 'roof': []}
+ids = {}
+tiles = []
+with open('ids.json', 'r') as outfile:
+    ids = json.load(outfile)
+with open('tiles.json', 'r') as outfile:
+    tiles = json.load(outfile)
 
-for i in range(60):
-    for j in range(60):
-        main_floor[i][j] = 0
+object_locations = {}
+
+tiles_in_use = []
+
+for key in layout.keys():
+    for i in range(60):
+        row = []
+        for j in range(60):
+            if i == 30 and j == 30:
+                row.append(ids[key])
+            else:
+                row.append(0)
+        layout[key].append(row)
 
 
 
@@ -19,7 +35,6 @@ def home():
 
 @app.route('/dealOmen', methods=['POST', 'PUT'])
 def dealOmen():
-    print(request.content_type)
     req = request.get_data()
     cards = json.loads(req)
     print(cards)
@@ -35,7 +50,6 @@ def dealOmen():
 
 @app.route('/dealEvent', methods=['POST', 'PUT'])
 def dealEvent():
-    print(request.content_type)
     req = request.get_data()
     events = json.loads(req)
     print(events)
@@ -51,7 +65,6 @@ def dealEvent():
 
 @app.route('/dealItem', methods=['POST', 'PUT'])
 def dealItem():
-    print(request.content_type)
     req = request.get_data()
     items = json.loads(req)
     print(items)
@@ -67,7 +80,6 @@ def dealItem():
 
 @app.route('/dealTile', methods=['POST', 'PUT'])
 def dealTile():
-    print(request.content_type)
     req = request.get_data()
     tiles = json.loads(req)
     print(tiles)
@@ -80,3 +92,34 @@ def dealTile():
     chosen_card = random.choice(tiles)
     print(chosen_card['guid'])
     return chosen_card['guid']
+
+@app.route('/dealTileMaster', methods=['POST', 'GET', 'PUT'])
+def dealTileMaster():
+    if len(tiles) == 0:
+        return json.dumps({'response': 'False'})
+    index = 0
+    while(tiles[index]['guid'] in tiles_in_use):
+        index = random.choice(range(len(tiles)))
+    else:
+        chosen_card = tiles[index]
+        tiles_in_use.append(tiles.pop(index)['guid'])
+        return json.dumps(chosen_card)
+
+@app.route('/createJSONObject', methods=['PUT'])
+def createJSON():
+    objs = json.loads(request.get_data())
+    print(objs)
+    file_path = str(objs['Nickname'])+'.json'
+    if not path.exists(file_path):
+        with open(file_path, 'w') as outfile:
+                json.dump(objs, outfile)
+    return "JSONs created"
+
+
+@app.route('/updateObjectLocation', methods=['PUT'])
+def updateObjectLocation():
+    obj = json.loads(request.get_data())
+    if(obj['GUID'] in object_locations.keys()):
+        print('Object {} moved'.format(obj['GUID']))
+    object_locations[obj['GUID']] = obj['Transform']
+    return obj

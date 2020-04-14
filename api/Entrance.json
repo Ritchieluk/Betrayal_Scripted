@@ -1,0 +1,47 @@
+{
+    "Name": "Custom_Token",
+    "Transform": {
+        "posX": -19.9974117,
+        "posY": 1.01000011,
+        "posZ": -12.2840271,
+        "rotX": -4.46923821e-07,
+        "rotY": 269.985748,
+        "rotZ": -8.47613e-07,
+        "scaleX": 1.87838769,
+        "scaleY": 1.0,
+        "scaleZ": 1.87838769
+    },
+    "Nickname": "Entrance",
+    "Description": "",
+    "GMNotes": "",
+    "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+    },
+    "Locked": true,
+    "Grid": false,
+    "Snap": false,
+    "IgnoreFoW": false,
+    "Autoraise": true,
+    "Sticky": true,
+    "Tooltip": true,
+    "GridProjection": false,
+    "HideWhenFaceDown": false,
+    "Hands": false,
+    "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/865110520233608131/255C6EEC54F712B0A9AC297C74ED58ED317F3F07/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+            "Thickness": 0.1,
+            "MergeDistancePixels": 5.0,
+            "Stackable": false
+        }
+    },
+    "XmlUI": "",
+    "LuaScript": "",
+    "LuaScriptState": "",
+    "GUID": "670fb1"
+}

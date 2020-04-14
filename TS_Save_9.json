@@ -3,14 +3,14 @@
   "GameMode": "Betrayal Widow's Walk",
   "Gravity": 0.5,
   "PlayArea": 0.5,
-  "Date": "3/31/2020 1:41:00 PM",
+  "Date": "4/14/2020 4:03:17 PM",
   "Table": "Table_Custom",
   "TableURL": "http://i.imgur.com/kzy6wAc.jpg",
   "Sky": "Sky_Museum",
   "Note": "",
   "Rules": "",
   "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
-  "LuaScript": "--[[ Lua code. See documentation: http://berserk-games.com/knowledgebase/scripting/ --]]\n\n--[[ The OnLoad function. This is called after everything in the game save finishes loading.\nMost of your script code goes here. --]]\n\n\napi_status = false\napi_address = \"http://127.0.0.1:5000/\"\n\nfunction onload()\n    ping_api()\n\n    --[[ print('Onload!') --]]\nend\n\nfunction ping_api()\n    WebRequest.get(api_address, function(result)\n        print(result.is_error)\n        if result.is_error \n        then \n            print(result.error)\n            api_status = false\n        else \n            api_status = true\n        end\n    end)\nend\n\n\n\n--[[ The Update function. This is called once per frame. --]]\nfunction update ()\n        --[[ print('Update loop!') --]]\nend\n\nfunction onObjectDrop(player_color, dropped_object)\n    print(dropped_object)\n    print(player_color)\n    while not dropped_object.resting do\n        print(dropped_object.getPosition())\n    end\nend",
+  "LuaScript": "--[[ Lua code. See documentation: http://berserk-games.com/knowledgebase/scripting/ --]]\n\n--[[ The OnLoad function. This is called after everything in the game save finishes loading.\nMost of your script code goes here. --]]\n\n\napi_status = false\napi_address = \"http://127.0.0.1:5000/\"\nentrance_id = \"670fb1\"\nbasement_id = \"feaca3\"\nroof_id = \"b69407\"\nupper_id = \"c241d6\"\nroom_stack_id = \"334e6a\"\nomen_stack_id = \"aa006b\"\nitem_stack_id = \"c2ef1b\"\nevent_stack_id = \"a0f614\"\n\n\nfunction onload()\n    ping_api()\n\n\n    room_stack = getObjectFromGUID(room_stack_id)\n    getObjectFromGUID(omen_stack_id).setInvisibleTo({\"Blue\", \"White\", \"Green\", \"Purple\", \"Yellow\", \"Red\"})\n    getObjectFromGUID(item_stack_id).setInvisibleTo({\"Blue\", \"White\", \"Green\", \"Purple\", \"Yellow\", \"Red\"})\n    getObjectFromGUID(event_stack_id).setInvisibleTo({\"Blue\", \"White\", \"Green\", \"Purple\", \"Yellow\", \"Red\"})\n\n\n    --[[ print('Onload!') --]]\nend\n\nfunction ping_api()\n    WebRequest.get(api_address, function(result)\n        print(result.is_error)\n        if result.is_error \n        then \n            print(result.error)\n            api_status = false\n        else \n            api_status = true\n        end\n    end)\nend\n\n\n\n--[[ The Update function. This is called once per frame. --]]\nfunction update ()\n        --[[ print('Update loop!') --]]\nend\n\nfunction onObjectDrop(player_color, dropped_object)\n    print(dropped_object)\n    print(player_color)\n    if api_status\n    then\n        WebRequest.put(api_address..\"updateObjectLocation\", dropped_object.getJSON())\n    end\nend",
   "LuaScriptState": "",
   "Grid": {
     "Type": 0,
@@ -70,21 +70,21 @@
         "Color": "Blue",
         "Transform": {
           "posX": 23.6700039,
-          "posY": 2.964435,
+          "posY": 2.7451396,
           "posZ": 34.4527626,
           "rotX": 0.0,
           "rotY": 179.8,
           "rotZ": 0.0,
-          "scaleX": 15.3331528,
+          "scaleX": 15.33365,
           "scaleY": 11.8970528,
-          "scaleZ": 6.353258
+          "scaleZ": 6.353505
         }
       },
       {
         "Color": "Green",
         "Transform": {
           "posX": -23.6700039,
-          "posY": 2.964435,
+          "posY": 2.7451396,
           "posZ": 34.43159,
           "rotX": 0.0,
           "rotY": 180.000137,
@@ -98,7 +98,7 @@
         "Color": "White",
         "Transform": {
           "posX": 30.81625,
-          "posY": 4.132273,
+          "posY": 3.9129777,
           "posZ": -34.36184,
           "rotX": 0.0,
           "rotY": 0.0,
@@ -112,7 +112,7 @@
         "Color": "Red",
         "Transform": {
           "posX": -34.17523,
-          "posY": 4.132273,
+          "posY": 3.9129777,
           "posZ": -34.3113136,
           "rotX": 0.0,
           "rotY": 0.0,
@@ -126,28 +126,28 @@
         "Color": "Purple",
         "Transform": {
           "posX": 51.7664833,
-          "posY": 4.132273,
+          "posY": 3.9129777,
           "posZ": -0.9092634,
           "rotX": 0.0,
           "rotY": 270.0,
           "rotZ": 0.0,
-          "scaleX": 14.4065008,
+          "scaleX": 14.4069471,
           "scaleY": 7.0,
-          "scaleZ": 5.856277
+          "scaleZ": 5.856421
         }
       },
       {
         "Color": "Yellow",
         "Transform": {
           "posX": -51.93598,
-          "posY": 4.136275,
+          "posY": 3.91697836,
           "posZ": -0.3080852,
           "rotX": 0.0,
           "rotY": 89.99999,
           "rotZ": 0.0,
-          "scaleX": 15.1308079,
+          "scaleX": 15.1305208,
           "scaleY": 7.0,
-          "scaleZ": 5.73782825
+          "scaleZ": 5.73769665
         }
       }
     ]
@@ -166,12 +166,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 29.8893242,
-        "posY": 1.06092227,
-        "posZ": -28.9636288,
-        "rotX": 0.00491392426,
-        "rotY": 359.978027,
-        "rotZ": -0.00473535433,
+        "posX": 29.889328,
+        "posY": 1.06094885,
+        "posZ": -28.96364,
+        "rotX": 0.00317240087,
+        "rotY": 359.97818,
+        "rotZ": -0.004223993,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -267,7 +267,7 @@
       "ColorDiffuse": {
         "r": 0.597829759,
         "g": 0.7568628,
-        "b": 0.3333313
+        "b": 0.333331168
       },
       "Locked": true,
       "Grid": false,
@@ -283,7 +283,7 @@
         "value": 0
       },
       "XmlUI": "",
-      "LuaScript": "",
+      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n\r\n    tile_button = {}\r\n    tile_button.click_function = 'deal_tile_card'\r\n    tile_button.function_owner = self\r\n    tile_button.label = 'Deal tile Card'\r\n    tile_button.position = {2,0.1,0}\r\n    tile_button.rotation = {0,180,0}\r\n    tile_button.width = 800\r\n    tile_button.height = 500\r\n    tile_button.font_size = 100\r\n    tile_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(tile_button)\r\n    \r\n\r\n    --[[ print('Onload!') --]]\r\nend\r\n--TODO: Split this into functions\r\nfunction deal_tile_card(obj, color, alt_click)\r\n    --TODO: Check if color is active player\r\n    print(color)\r\n    --TODO: 'Draw Tile' button is deactivated until card is placed\r\n    --TODO: If there is no where for the tile to go, draw a new one (or perhaps don't deal it)\r\n    if api_status then\r\n        WebRequest.get(api_address..\"dealTileMaster\", function(result)\r\n            print(result.text)\r\n            table = JSON.decode(result.text)\r\n            if table['type'] == \"omen\" then\r\n                self.setValue(self.getValue()+1)\r\n            end\r\n            parameters = {}\r\n            parameters.guid = table['guid']\r\n            \r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n                print(dealt_card.script_code)\r\n                tile_button = {}\r\n                tile_button.click_function = 'place_tile'\r\n                function place_tile(obj, color, alt_click)\r\n                    hand = Player[color].getHandObjects()\r\n                    print(hand)\r\n                    --TODO: Card is taken from players hand and placed over button\r\n                    --TODO: API is alerted to where tile was placed\r\n                    --TODO: All 'place tile' buttons are deactivated\r\n                    --TODO: 'Draw Tile' becomes reactivated\r\n                    --TODO: If event/omen/item is on tile, player draws it\r\n                end\r\n                --TODO: Create button per door on card\r\n                tile_button.function_owner = self\r\n                tile_button.label = 'Place Room Tile'\r\n                tile_button.position = {2,0.1,0}\r\n                tile_button.rotation = {0,180,0}\r\n                tile_button.width = 800\r\n                tile_button.height = 500\r\n                tile_button.font_size = 100\r\n                tile_button.tooltip = 'Im A Button!'\r\n                dealt_card.createButton(tile_button)\r\n            end\r\n\r\n            print(getObjectFromGUID(\"334e6a\"))\r\n            tile_deck = getObjectFromGUID(\"334e6a\")\r\n            tile_deck.takeObject(parameters)\r\n            --[[if pcall(getObjectFromGUID(\"334e6a\")) then\r\n                \r\n                \r\n            else\r\n                print(\"PCALL\")\r\n                print(getObjectFromGUID(\"334e6a\"))\r\n                tile_deck = getObjectFromGUID(\"334e6a\")\r\n                tile_deck.takeObject(parameters)\r\n                print(\"ELSE\")\r\n                card = getObjectFromGUID(table['guid'])\r\n                card.deal(1,color)\r\n                self.removeButton(0)\r\n            end]]--\r\n        end)\r\n        \r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
       "LuaScriptState": "",
       "GUID": "81361c"
     },
@@ -293,9 +293,9 @@
         "posX": -7.99979258,
         "posY": 1.070987,
         "posZ": -28.8254414,
-        "rotX": -4.13204262E-08,
+        "rotX": 6.53721E-08,
         "rotY": 180.0,
-        "rotZ": -4.715229E-08,
+        "rotZ": 1.75878014E-07,
         "scaleX": 1.70230925,
         "scaleY": 1.0,
         "scaleZ": 1.70230925
@@ -352,7 +352,8 @@
           "UniqueBack": false
         }
       },
-      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n    omen_button = {}\r\n    omen_button.click_function = 'deal_omen_card'\r\n    omen_button.function_owner = self\r\n    omen_button.label = 'Deal Omen Card'\r\n    omen_button.position = {2,0,0}\r\n    omen_button.rotation = {0,0,0}\r\n    omen_button.width = 800\r\n    omen_button.height = 500\r\n    omen_button.font_size = 100\r\n    omen_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(omen_button)\r\n\r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend\r\n\r\nfunction deal_omen_card(obj, color, alt_click)\r\n    print(color)\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealOmen\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend",
+      "XmlUI": "",
+      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n    omen_button = {}\r\n    omen_button.click_function = 'deal_omen_card'\r\n    omen_button.function_owner = self\r\n    omen_button.label = 'Deal Omen Card'\r\n    omen_button.position = {1,0,1}\r\n    omen_button.rotation = {0,180,0}\r\n    omen_button.width = 400\r\n    omen_button.height = 250\r\n    omen_button.font_size = 50\r\n    omen_button.tooltip = \"I'm A Button!\"\r\n    mount = getObjectFromGUID(\"81361c\")\r\n    mount.createButton(omen_button)\r\n\r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend\r\n\r\nfunction deal_omen_card(obj, color, alt_click)\r\n    print(color)\r\n    obj = self\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealOmen\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend",
       "LuaScriptState": "",
       "ContainedObjects": [
         {
@@ -1331,12 +1332,12 @@
     {
       "Name": "Deck",
       "Transform": {
-        "posX": 0.000143482408,
+        "posX": 0.0001434848,
         "posY": 1.12295365,
         "posZ": -28.824892,
-        "rotX": 1.16758876E-07,
+        "rotX": 1.03217978E-07,
         "rotY": 180.0,
-        "rotZ": -7.34155662E-07,
+        "rotZ": -1.028224E-07,
         "scaleX": 1.702724,
         "scaleY": 1.0,
         "scaleZ": 1.702724
@@ -1405,7 +1406,8 @@
           "UniqueBack": false
         }
       },
-      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n\r\n    item_button = {}\r\n    item_button.click_function = 'deal_item_card'\r\n    item_button.function_owner = self\r\n    item_button.label = 'Deal item Card'\r\n    item_button.position = {2,0,0}\r\n    item_button.rotation = {0,0,0}\r\n    item_button.width = 800\r\n    item_button.height = 500\r\n    item_button.font_size = 100\r\n    item_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(item_button)\r\n    \r\n\r\n    --[[ print('Onload!') --]]\r\nend\r\n\r\nfunction deal_item_card(obj, color, alt_click)\r\n    print(color)\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealItem\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
+      "XmlUI": "",
+      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n\r\n    item_button = {}\r\n    item_button.click_function = 'deal_item_card'\r\n    item_button.function_owner = self\r\n    item_button.label = 'Deal item Card'\r\n    item_button.position = {-1,0,1}\r\n    item_button.rotation = {0,180,0}\r\n    item_button.width = 400\r\n    item_button.height = 250\r\n    item_button.font_size = 50\r\n    item_button.tooltip = \"I'm A Button!\"\r\n    mount = getObjectFromGUID(\"81361c\")\r\n    mount.createButton(item_button)\r\n\r\n    \r\n\r\n    --[[ print('Onload!') --]]\r\nend\r\n\r\nfunction deal_item_card(obj, color, alt_click)\r\n    print(color)\r\n    obj = self\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealItem\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
       "LuaScriptState": "",
       "ContainedObjects": [
         {
@@ -2935,9 +2937,9 @@
         "posX": 7.99998474,
         "posY": 1.22255623,
         "posZ": -28.8254452,
-        "rotX": 1.22308577E-07,
+        "rotX": -6.166227E-08,
         "rotY": 180.0,
-        "rotZ": 7.00009E-07,
+        "rotZ": 8.04001346E-08,
         "scaleX": 1.76113939,
         "scaleY": 1.0,
         "scaleZ": 1.76113939
@@ -3029,7 +3031,8 @@
           "UniqueBack": false
         }
       },
-      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n    event_button = {}\r\n    event_button.click_function = 'deal_event_card'\r\n    event_button.function_owner = self\r\n    event_button.label = 'Deal Event Card'\r\n    event_button.position = {2,0,0}\r\n    event_button.rotation = {0,0,0}\r\n    event_button.width = 800\r\n    event_button.height = 500\r\n    event_button.font_size = 100\r\n    event_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(event_button)\r\nend\r\n\r\nfunction deal_event_card(obj, color, alt_click)\r\n    print(color)\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealEvent\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
+      "XmlUI": "",
+      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n    event_button = {}\r\n    event_button.click_function = 'deal_event_card'\r\n    event_button.function_owner = self\r\n    event_button.label = 'Deal Event Card'\r\n    event_button.position = {0,0,1}\r\n    event_button.rotation = {0,180,0}\r\n    event_button.width = 400\r\n    event_button.height = 250\r\n    event_button.font_size = 50\r\n    event_button.tooltip = \"I'm A Button!\"\r\n    mount = getObjectFromGUID(\"81361c\")\r\n    mount.createButton(event_button)\r\nend\r\n\r\nfunction deal_event_card(obj, color, alt_click)\r\n    print(color)\r\n    obj = self\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealEvent\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
       "LuaScriptState": "",
       "ContainedObjects": [
         {
@@ -5615,11 +5618,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.76189,
-        "posY": 0.960925341,
-        "posZ": 8.629295,
-        "rotX": 0.01769924,
-        "rotY": 90.00764,
-        "rotZ": 0.0006297889,
+        "posY": 0.9610667,
+        "posZ": 8.629293,
+        "rotX": -0.00127866748,
+        "rotY": 90.0076752,
+        "rotZ": -0.00369543419,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -5914,12 +5917,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 12.3680391,
-        "posY": 1.03093183,
-        "posZ": 28.8129063,
-        "rotX": 0.00174806325,
-        "rotY": 0.0009120208,
-        "rotZ": 180.012482,
+        "posX": 12.3680439,
+        "posY": 1.03092706,
+        "posZ": 28.8129044,
+        "rotX": 0.00170990766,
+        "rotY": 0.0009137258,
+        "rotZ": 180.0126,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6215,11 +6218,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -46.7500954,
-        "posY": 0.96513474,
-        "posZ": 9.544375,
-        "rotX": 0.002828316,
-        "rotY": 270.001038,
-        "rotZ": 0.0070209424,
+        "posY": 0.9650954,
+        "posZ": 9.544372,
+        "rotX": 0.005274089,
+        "rotY": 270.001,
+        "rotZ": 0.00107782765,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6514,12 +6517,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 28.5236187,
-        "posY": 0.961071253,
-        "posZ": -28.8067875,
-        "rotX": 0.005569144,
+        "posX": 28.5236149,
+        "posY": 0.961069047,
+        "posZ": -28.8067856,
+        "rotX": 0.005782699,
         "rotY": 180.00235,
-        "rotZ": 0.00137731794,
+        "rotZ": 0.00135372614,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -6815,11 +6818,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -28.466341,
-        "posY": 0.9608652,
-        "posZ": -28.7773266,
-        "rotX": 0.01824029,
-        "rotY": 180.000381,
-        "rotZ": 0.00175210589,
+        "posY": 0.961068869,
+        "posZ": -28.7773247,
+        "rotX": 0.0055287024,
+        "rotY": 180.0003,
+        "rotZ": 0.00143996882,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -7114,12 +7117,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -11.3415174,
-        "posY": 1.03092885,
-        "posZ": 28.7662,
-        "rotX": 0.00175329961,
-        "rotY": 0.002259278,
-        "rotZ": 180.0126,
+        "posX": -11.3415127,
+        "posY": 1.03092647,
+        "posZ": 28.766201,
+        "rotX": 0.00177276053,
+        "rotY": 0.002348074,
+        "rotZ": 180.012711,
         "scaleX": 1.39999843,
         "scaleY": 1.39999843,
         "scaleZ": 1.39999843
@@ -7510,12 +7513,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 29.4549713,
-        "posY": 1.06095588,
-        "posZ": -27.8098412,
-        "rotX": 0.00360959629,
-        "rotY": 359.986,
-        "rotZ": 359.992126,
+        "posX": 29.4549732,
+        "posY": 1.0609268,
+        "posZ": -27.8098431,
+        "rotX": 0.00611172849,
+        "rotY": 359.985748,
+        "rotZ": -0.003916904,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7557,11 +7560,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 27.5782967,
-        "posY": 1.06123054,
-        "posZ": -27.8137989,
-        "rotX": -0.0034147664,
-        "rotY": 359.987,
-        "rotZ": 359.990875,
+        "posY": 1.06119943,
+        "posZ": -27.8138027,
+        "rotX": -0.00339954067,
+        "rotY": 359.987061,
+        "rotZ": -0.00262789312,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7602,12 +7605,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 27.1984253,
-        "posY": 1.06106853,
-        "posZ": -29.1509533,
-        "rotX": 0.00121573568,
-        "rotY": 0.0189949367,
-        "rotZ": -0.00572111551,
+        "posX": 27.1984272,
+        "posY": 1.06111228,
+        "posZ": -29.15096,
+        "rotX": -0.003829059,
+        "rotY": 0.0187796261,
+        "rotZ": -0.00407386757,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7648,12 +7651,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -27.5161476,
-        "posY": 1.0612638,
-        "posZ": -27.78135,
-        "rotX": 359.983459,
-        "rotY": 359.9821,
-        "rotZ": -0.00218699966,
+        "posX": -27.5161324,
+        "posY": 1.06100118,
+        "posZ": -27.7813263,
+        "rotX": 0.00124443346,
+        "rotY": 359.982178,
+        "rotZ": -0.005236222,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7663,8 +7666,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999604,
-        "b": 0.0939960554
+        "g": 0.0999958143,
+        "b": 0.0939958
       },
       "Locked": false,
       "Grid": false,
@@ -7694,12 +7697,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -27.2413769,
-        "posY": 1.06069708,
-        "posZ": -29.32555,
-        "rotX": 359.9861,
-        "rotY": 359.9912,
-        "rotZ": -0.000615442,
+        "posX": -27.2413673,
+        "posY": 1.06089532,
+        "posZ": -29.325531,
+        "rotX": 0.00285964273,
+        "rotY": 359.9915,
+        "rotZ": -0.00172883144,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7709,8 +7712,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999604,
-        "b": 0.0939960554
+        "g": 0.0999958143,
+        "b": 0.0939958
       },
       "Locked": false,
       "Grid": false,
@@ -7740,12 +7743,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -29.8522587,
-        "posY": 1.060885,
-        "posZ": -28.9367046,
-        "rotX": 359.9862,
-        "rotY": 0.0091200415,
-        "rotZ": 0.000200257753,
+        "posX": -29.8522568,
+        "posY": 1.061126,
+        "posZ": -28.9366856,
+        "rotX": -0.00280223,
+        "rotY": 0.008864457,
+        "rotZ": 0.000217604131,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7755,8 +7758,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999604,
-        "b": 0.0939960554
+        "g": 0.0999958143,
+        "b": 0.0939958
       },
       "Locked": false,
       "Grid": false,
@@ -7786,12 +7789,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -29.4224319,
-        "posY": 1.06130242,
-        "posZ": -27.7747784,
-        "rotX": 359.984558,
-        "rotY": -0.001338111,
-        "rotZ": -0.00161599636,
+        "posX": -29.4224262,
+        "posY": 1.06113935,
+        "posZ": -27.7747574,
+        "rotX": -0.00179440924,
+        "rotY": -0.00185505173,
+        "rotZ": -0.005150698,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7801,8 +7804,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999604,
-        "b": 0.0939960554
+        "g": 0.0999958143,
+        "b": 0.0939958
       },
       "Locked": false,
       "Grid": false,
@@ -7833,11 +7836,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.706913,
-        "posY": 1.06502187,
-        "posZ": 8.570938,
-        "rotX": 0.00824653,
-        "rotY": 270.00177,
-        "rotZ": 0.011199859,
+        "posY": 1.06522119,
+        "posZ": 8.57093,
+        "rotX": 0.008927907,
+        "rotY": 270.001282,
+        "rotZ": 0.00251795771,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7848,7 +7851,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171998888
+        "b": 0.17199865
       },
       "Locked": false,
       "Grid": false,
@@ -7878,12 +7881,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -47.27562,
-        "posY": 1.06541908,
-        "posZ": 10.7735758,
-        "rotX": 0.002690699,
-        "rotY": 269.999634,
-        "rotZ": 0.008851233,
+        "posX": -47.2756271,
+        "posY": 1.06502867,
+        "posZ": 10.77357,
+        "rotX": 0.01618253,
+        "rotY": 269.9997,
+        "rotZ": 0.00655340776,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7894,7 +7897,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171998888
+        "b": 0.17199865
       },
       "Locked": false,
       "Grid": false,
@@ -7924,12 +7927,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -47.06095,
-        "posY": 1.064651,
-        "posZ": 8.226533,
-        "rotX": 0.0145386318,
-        "rotY": 270.0038,
-        "rotZ": 0.0187903661,
+        "posX": -47.060955,
+        "posY": 1.06487739,
+        "posZ": 8.226521,
+        "rotX": 0.0166363027,
+        "rotY": 270.0033,
+        "rotZ": 0.00879915152,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7940,7 +7943,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171998888
+        "b": 0.17199865
       },
       "Locked": false,
       "Grid": false,
@@ -7971,11 +7974,11 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.5840378,
-        "posY": 1.06531513,
-        "posZ": 10.3248653,
-        "rotX": 0.0018673751,
-        "rotY": 270.009949,
-        "rotZ": 0.0110307923,
+        "posY": 1.06534529,
+        "posZ": 10.3248644,
+        "rotX": 0.007394078,
+        "rotY": 270.009644,
+        "rotZ": 0.00141680031,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -7986,7 +7989,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171998888
+        "b": 0.17199865
       },
       "Locked": false,
       "Grid": false,
@@ -8016,12 +8019,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.1031551,
-        "posY": 1.06072783,
-        "posZ": 27.6247482,
-        "rotX": 0.00598369632,
-        "rotY": 359.985352,
-        "rotZ": 0.016552275,
+        "posX": -12.1031561,
+        "posY": 1.06076527,
+        "posZ": 27.6247463,
+        "rotX": 0.006000633,
+        "rotY": 359.985565,
+        "rotZ": 0.0167883728,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8030,9 +8033,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191995919,
+        "r": 0.19199568,
         "g": 0.701,
-        "b": 0.16799593
+        "b": 0.167995691
       },
       "Locked": false,
       "Grid": false,
@@ -8062,12 +8065,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.0657425,
-        "posY": 1.06127644,
-        "posZ": 29.2827816,
-        "rotX": 0.00150553579,
-        "rotY": 359.9825,
-        "rotZ": 0.015734341,
+        "posX": -10.0657339,
+        "posY": 1.06124508,
+        "posZ": 29.2827854,
+        "rotX": 0.00149747392,
+        "rotY": 359.982574,
+        "rotZ": 0.014866814,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8076,9 +8079,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191995919,
+        "r": 0.19199568,
         "g": 0.701,
-        "b": 0.16799593
+        "b": 0.167995691
       },
       "Locked": false,
       "Grid": false,
@@ -8108,12 +8111,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.51691,
-        "posY": 1.06125164,
+        "posX": -10.5169077,
+        "posY": 1.061138,
         "posZ": 27.61614,
-        "rotX": 0.0029021427,
-        "rotY": 359.984467,
-        "rotZ": 0.0127654811,
+        "rotX": 0.00284074,
+        "rotY": 359.984619,
+        "rotZ": 0.0156066986,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8122,9 +8125,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191995919,
+        "r": 0.19199568,
         "g": 0.701,
-        "b": 0.16799593
+        "b": 0.167995691
       },
       "Locked": false,
       "Grid": false,
@@ -8154,12 +8157,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.5580959,
-        "posY": 1.06069136,
-        "posZ": 29.3022461,
-        "rotX": 0.005838142,
-        "rotY": 359.983337,
-        "rotZ": 0.0151618011,
+        "posX": -12.5580931,
+        "posY": 1.060686,
+        "posZ": 29.3022556,
+        "rotX": 0.006485745,
+        "rotY": 359.983276,
+        "rotZ": 0.0157138817,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8168,9 +8171,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191995919,
+        "r": 0.19199568,
         "g": 0.701,
-        "b": 0.16799593
+        "b": 0.167995691
       },
       "Locked": false,
       "Grid": false,
@@ -8200,12 +8203,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.6728029,
-        "posY": 1.06129169,
-        "posZ": 29.164669,
-        "rotX": 0.00348714553,
-        "rotY": 359.983978,
-        "rotZ": 0.0121958992,
+        "posX": 13.672802,
+        "posY": 1.0613333,
+        "posZ": 29.1646633,
+        "rotX": 0.0011919894,
+        "rotY": 359.9843,
+        "rotZ": 0.014199608,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8214,7 +8217,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117995881,
+        "r": 0.117995627,
         "g": 0.53,
         "b": 1.0
       },
@@ -8246,12 +8249,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 11.4244909,
-        "posY": 1.060669,
-        "posZ": 27.8094463,
-        "rotX": 0.006611265,
-        "rotY": 359.981232,
-        "rotZ": 0.0163076483,
+        "posX": 11.4244823,
+        "posY": 1.0608027,
+        "posZ": 27.8094387,
+        "rotX": 0.004183568,
+        "rotY": 359.9813,
+        "rotZ": 0.0144838383,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8260,7 +8263,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117995881,
+        "r": 0.117995627,
         "g": 0.53,
         "b": 1.0
       },
@@ -8292,12 +8295,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 11.0631552,
-        "posY": 1.06068015,
-        "posZ": 29.164978,
-        "rotX": 0.00608849525,
-        "rotY": 359.981171,
-        "rotZ": 0.0141796349,
+        "posX": 11.0631418,
+        "posY": 1.06057775,
+        "posZ": 29.1649818,
+        "rotX": 0.00717966445,
+        "rotY": 359.980957,
+        "rotZ": 0.0176282953,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8306,7 +8309,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117995881,
+        "r": 0.117995627,
         "g": 0.53,
         "b": 1.0
       },
@@ -8338,12 +8341,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 13.3110685,
-        "posY": 1.06127918,
-        "posZ": 27.8092613,
-        "rotX": 0.00274948054,
-        "rotY": 359.982483,
-        "rotZ": 0.0127539039,
+        "posX": 13.3110628,
+        "posY": 1.061189,
+        "posZ": 27.8092575,
+        "rotX": 0.00400824239,
+        "rotY": 359.982819,
+        "rotZ": 0.0161949284,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8352,7 +8355,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117995881,
+        "r": 0.117995627,
         "g": 0.53,
         "b": 1.0
       },
@@ -8384,12 +8387,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 47.2775421,
-        "posY": 1.0608269,
-        "posZ": 9.881867,
-        "rotX": 359.986359,
-        "rotY": 270.011139,
-        "rotZ": 0.0005154875,
+        "posX": 47.2775154,
+        "posY": 1.06125689,
+        "posZ": 9.881859,
+        "rotX": 0.00269199559,
+        "rotY": 270.011,
+        "rotZ": 0.004931228,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8399,7 +8402,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499588,
+        "g": 0.124995627,
         "b": 0.941
       },
       "Locked": false,
@@ -8430,12 +8433,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 45.474514,
-        "posY": 1.06143987,
-        "posZ": 9.235754,
-        "rotX": 359.983154,
-        "rotY": 270.0113,
-        "rotZ": -0.00106421381,
+        "posX": 45.474472,
+        "posY": 1.06113446,
+        "posZ": 9.235745,
+        "rotX": 0.00469402038,
+        "rotY": 270.012543,
+        "rotZ": 0.004288889,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8445,7 +8448,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499588,
+        "g": 0.124995627,
         "b": 0.941
       },
       "Locked": false,
@@ -8476,12 +8479,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 45.7294159,
-        "posY": 1.06128037,
-        "posZ": 7.662303,
-        "rotX": 359.987457,
-        "rotY": 269.9967,
-        "rotZ": 0.0013504246,
+        "posX": 45.7293739,
+        "posY": 1.06111479,
+        "posZ": 7.66228628,
+        "rotX": 0.00175779534,
+        "rotY": 269.9969,
+        "rotZ": 0.00388835534,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8491,7 +8494,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499588,
+        "g": 0.124995627,
         "b": 0.941
       },
       "Locked": false,
@@ -8522,12 +8525,12 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 47.07781,
-        "posY": 1.060945,
-        "posZ": 7.305227,
-        "rotX": 359.983734,
-        "rotY": 269.991028,
-        "rotZ": -0.000221710157,
+        "posX": 47.0777664,
+        "posY": 1.06105268,
+        "posZ": 7.30520535,
+        "rotX": 0.004239491,
+        "rotY": 269.990723,
+        "rotZ": 0.00568797253,
         "scaleX": 0.5000004,
         "scaleY": 0.5000004,
         "scaleZ": 0.5000004
@@ -8537,7 +8540,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499588,
+        "g": 0.124995627,
         "b": 0.941
       },
       "Locked": false,
@@ -8569,9 +8572,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 14.0146847,
-        "posY": 1.06121719,
+        "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": -1.46750892E-07,
+        "rotX": -4.592657E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8619,7 +8622,7 @@
         "posX": 13.3480854,
         "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": -2.008359E-06,
+        "rotX": -3.438474E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8667,7 +8670,7 @@
         "posX": 12.6814861,
         "posY": 1.06121707,
         "posZ": 31.4762363,
-        "rotX": 7.86233954E-07,
+        "rotX": -7.242525E-08,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8713,9 +8716,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 12.0149975,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.47621,
-        "rotX": -1.28428212E-06,
+        "rotX": -2.314634E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8761,9 +8764,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 11.3488274,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.47626,
-        "rotX": -8.906449E-07,
+        "rotX": -1.04659591E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8809,9 +8812,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 10.68103,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.47624,
-        "rotX": -3.33420218E-07,
+        "rotX": 1.24425384E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8857,9 +8860,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -11.6709108,
-        "posY": 1.06121719,
+        "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -1.17711818E-06,
+        "rotX": -3.730848E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8907,7 +8910,7 @@
         "posX": -9.671111,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -1.28223564E-06,
+        "rotX": -1.73976889E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -8955,7 +8958,7 @@
         "posX": -10.33771,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": 2.79028518E-06,
+        "rotX": -4.302683E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9003,7 +9006,7 @@
         "posX": -11.0043116,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": -4.01165465E-07,
+        "rotX": -1.89676177E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9051,7 +9054,7 @@
         "posX": -13.0041113,
         "posY": 1.06121707,
         "posZ": 31.454319,
-        "rotX": 2.99515432E-06,
+        "rotX": 1.08048177E-07,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9097,9 +9100,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -12.33751,
-        "posY": 1.06121707,
+        "posY": 1.06121719,
         "posZ": 31.454319,
-        "rotX": -1.35461744E-06,
+        "rotX": 1.96787482E-06,
         "rotY": 1.70754731E-06,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9145,11 +9148,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.50179,
-        "posY": 0.965223,
+        "posY": 0.965223134,
         "posZ": 11.1145964,
-        "rotX": 2.818761E-06,
+        "rotX": 3.25603082E-06,
         "rotY": 269.999969,
-        "rotZ": -8.992841E-07,
+        "rotZ": 8.16989356E-08,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9193,11 +9196,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.50182,
-        "posY": 0.965223134,
+        "posY": 0.965223,
         "posZ": 10.4460421,
-        "rotX": -4.830253E-07,
+        "rotX": -2.97678184E-06,
         "rotY": 269.999969,
-        "rotZ": -9.261922E-07,
+        "rotZ": -1.06156369E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9241,11 +9244,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.5018044,
-        "posY": 0.965223134,
+        "posY": 0.965223,
         "posZ": 9.780419,
-        "rotX": -2.197902E-06,
+        "rotX": 7.666744E-07,
         "rotY": 269.999969,
-        "rotZ": -4.50800627E-07,
+        "rotZ": 2.12828468E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9289,11 +9292,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.5018044,
-        "posY": 0.965223134,
+        "posY": 0.965223,
         "posZ": 9.11382,
-        "rotX": -9.673325E-07,
+        "rotX": 1.357512E-06,
         "rotY": 269.999969,
-        "rotZ": 2.99653129E-06,
+        "rotZ": 1.82908821E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9339,9 +9342,9 @@
         "posX": -49.5018044,
         "posY": 0.965223134,
         "posZ": 8.447219,
-        "rotX": -6.888988E-08,
+        "rotX": -1.74828278E-06,
         "rotY": 269.999969,
-        "rotZ": -1.16716983E-07,
+        "rotZ": 2.538791E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9385,11 +9388,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -49.5018044,
-        "posY": 0.965223,
+        "posY": 0.965223134,
         "posZ": 7.78062,
-        "rotX": -2.51568213E-06,
+        "rotX": 9.700558E-08,
         "rotY": 269.999969,
-        "rotZ": 2.27487E-07,
+        "rotZ": -3.111647E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9435,7 +9438,7 @@
         "posX": -30.0657082,
         "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 1.03260265E-06,
+        "rotX": 2.98792088E-06,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9483,7 +9486,7 @@
         "posX": -29.3991089,
         "posY": 1.06121683,
         "posZ": -31.4517136,
-        "rotX": 1.85476461E-06,
+        "rotX": -5.19003834E-07,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9529,9 +9532,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -28.73251,
-        "posY": 1.06121683,
+        "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 1.47240212E-06,
+        "rotX": 1.87630133E-06,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9577,9 +9580,9 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -28.0659065,
-        "posY": 1.06121683,
+        "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 1.27633928E-06,
+        "rotX": 3.35354343E-07,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9627,7 +9630,7 @@
         "posX": -27.3993073,
         "posY": 1.061217,
         "posZ": -31.4517136,
-        "rotX": 5.38009431E-07,
+        "rotX": -1.36646872E-06,
         "rotY": 180.000031,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9675,7 +9678,7 @@
         "posX": -26.732708,
         "posY": 1.061217,
         "posZ": -31.4517117,
-        "rotX": -1.09326862E-07,
+        "rotX": -1.58900127E-06,
         "rotY": 180.000122,
         "rotZ": 180.0,
         "scaleX": 0.334605664,
@@ -9723,9 +9726,9 @@
         "posX": 26.8405552,
         "posY": 0.961216867,
         "posZ": -31.479126,
-        "rotX": -4.89368745E-07,
+        "rotX": -2.57771944E-07,
         "rotY": 180.000275,
-        "rotZ": -8.128606E-07,
+        "rotZ": 3.46042839E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9769,11 +9772,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 27.5071545,
-        "posY": 0.961216867,
+        "posY": 0.961217,
         "posZ": -31.479126,
-        "rotX": 1.55253861E-06,
+        "rotX": 1.19861193E-06,
         "rotY": 180.000275,
-        "rotZ": -7.885816E-08,
+        "rotZ": -5.295262E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9817,11 +9820,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 28.1737537,
-        "posY": 0.961216867,
+        "posY": 0.961216748,
         "posZ": -31.479126,
-        "rotX": -5.50405844E-07,
+        "rotX": -5.01159946E-07,
         "rotY": 179.985809,
-        "rotZ": -4.7102624E-08,
+        "rotZ": 1.74896613E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9867,9 +9870,9 @@
         "posX": 28.840353,
         "posY": 0.961216867,
         "posZ": -31.479126,
-        "rotX": -5.657702E-07,
+        "rotX": -4.3658244E-07,
         "rotY": 179.9992,
-        "rotZ": 4.48244555E-06,
+        "rotZ": -3.00579273E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9915,9 +9918,9 @@
         "posX": 29.5065327,
         "posY": 0.961216867,
         "posZ": -31.4794178,
-        "rotX": -1.52700909E-06,
+        "rotX": -1.45175534E-06,
         "rotY": 179.980438,
-        "rotZ": -3.144218E-07,
+        "rotZ": 5.02749344E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -9963,9 +9966,9 @@
         "posX": 30.16976,
         "posY": 0.961216867,
         "posZ": -31.4784431,
-        "rotX": 4.824242E-08,
+        "rotX": -1.56792817E-06,
         "rotY": 180.019882,
-        "rotZ": -2.98666373E-06,
+        "rotZ": -4.07479945E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10009,11 +10012,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 49.3990364,
-        "posY": 0.9612172,
+        "posY": 0.9612171,
         "posZ": 6.968291,
-        "rotX": -1.38388987E-06,
+        "rotX": -2.650743E-07,
         "rotY": 89.99997,
-        "rotZ": 1.78360935E-08,
+        "rotZ": 4.25009546E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10059,9 +10062,9 @@
         "posX": 49.3990364,
         "posY": 0.9612172,
         "posZ": 7.63489056,
-        "rotX": -2.66393931E-06,
+        "rotX": 3.209395E-06,
         "rotY": 89.99997,
-        "rotZ": -2.24550513E-06,
+        "rotZ": 4.90484069E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10107,9 +10110,9 @@
         "posX": 49.3990364,
         "posY": 0.9612172,
         "posZ": 8.301491,
-        "rotX": -7.30770068E-07,
+        "rotX": -3.8852238E-07,
         "rotY": 89.99996,
-        "rotZ": -1.1708587E-08,
+        "rotZ": 5.51926064E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10153,11 +10156,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 49.3990364,
-        "posY": 0.9612172,
+        "posY": 0.9612171,
         "posZ": 8.968091,
-        "rotX": 3.00197E-06,
+        "rotX": 3.80187726E-06,
         "rotY": 89.99997,
-        "rotZ": -1.08321012E-06,
+        "rotZ": -1.15780358E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10203,9 +10206,9 @@
         "posX": 49.39903,
         "posY": 0.961217,
         "posZ": 9.634694,
-        "rotX": 2.16558738E-06,
+        "rotX": -3.233328E-06,
         "rotY": 89.99974,
-        "rotZ": -7.256081E-07,
+        "rotZ": -4.4806373E-07,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10249,11 +10252,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 49.3990364,
-        "posY": 0.961217344,
+        "posY": 0.9612172,
         "posZ": 10.3012905,
-        "rotX": 5.76557852E-07,
+        "rotX": 4.5939683E-07,
         "rotY": 89.99996,
-        "rotZ": -3.02525E-06,
+        "rotZ": -1.61405433E-06,
         "scaleX": 0.334605664,
         "scaleY": 1.0,
         "scaleZ": 0.334605664
@@ -10299,9 +10302,9 @@
         "posX": 50.6560059,
         "posY": 0.9612179,
         "posZ": 31.7162724,
-        "rotX": 1.91443661E-08,
+        "rotX": 2.88812885E-08,
         "rotY": 179.971878,
-        "rotZ": 1.88940454E-08,
+        "rotZ": 2.996418E-08,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -11589,11 +11592,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -42.5533524,
-        "posY": 0.964248359,
+        "posY": 0.9642481,
         "posZ": 31.56133,
-        "rotX": -1.83121841E-07,
+        "rotX": 1.30673726E-07,
         "rotY": 180.000137,
-        "rotZ": 0.0438117832,
+        "rotZ": 0.04381134,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -12881,11 +12884,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 42.45366,
-        "posY": 0.9612177,
+        "posY": 0.9612178,
         "posZ": 31.77036,
-        "rotX": -4.27151328E-08,
+        "rotX": -3.190633E-07,
         "rotY": 180.000992,
-        "rotZ": -7.19034733E-06,
+        "rotZ": -7.43612736E-06,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -14173,11 +14176,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": -50.6406822,
-        "posY": 0.96522367,
+        "posY": 0.9652236,
         "posZ": 31.58595,
-        "rotX": -3.43683872E-08,
+        "rotX": 7.306838E-09,
         "rotY": 179.999939,
-        "rotZ": 3.44427882E-08,
+        "rotZ": -2.90123747E-08,
         "scaleX": 5.94569635,
         "scaleY": 1.0,
         "scaleZ": 5.94569635
@@ -15547,11 +15550,11 @@
       "Name": "Custom_Tile",
       "Transform": {
         "posX": 46.6322174,
-        "posY": 0.9612178,
+        "posY": 0.961217344,
         "posZ": -31.436697,
-        "rotX": 8.367647E-07,
+        "rotX": 6.649255E-07,
         "rotY": 180.000046,
-        "rotZ": -2.228213E-07,
+        "rotZ": -3.78799928E-06,
         "scaleX": 5.945577,
         "scaleY": 1.0,
         "scaleZ": 5.945577
@@ -15643,7 +15646,7 @@
       "Name": "Bag",
       "Transform": {
         "posX": -9.690127,
-        "posY": 0.8594467,
+        "posY": 0.8594505,
         "posZ": -35.6979752,
         "rotX": -7.19488844E-06,
         "rotY": 0.0371918753,
@@ -15657,8 +15660,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.099999465,
-        "b": 0.09399948
+        "g": 0.09999936,
+        "b": 0.09399938
       },
       "Locked": true,
       "Grid": false,
@@ -16739,11 +16742,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -8.39013,
-        "posY": 0.859436,
+        "posY": 0.8594269,
         "posZ": -35.6979675,
-        "rotX": 1.61237058E-05,
-        "rotY": 0.04349583,
-        "rotZ": -1.02274385E-06,
+        "rotX": 2.12346677E-05,
+        "rotY": 0.0434965044,
+        "rotZ": -1.005796E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -16753,8 +16756,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391999453,
-        "b": 0.112999462
+        "g": 0.391999334,
+        "b": 0.112999327
       },
       "Locked": true,
       "Grid": false,
@@ -17835,11 +17838,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -7.09013033,
-        "posY": 0.8594299,
+        "posY": 0.8594287,
         "posZ": -35.69797,
-        "rotX": -1.14323921E-05,
-        "rotY": 0.0356477,
-        "rotZ": -5.906599E-06,
+        "rotX": -1.56716469E-05,
+        "rotY": 0.0356472023,
+        "rotZ": -9.981689E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -17850,7 +17853,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999484
+        "b": 0.171999365
       },
       "Locked": true,
       "Grid": false,
@@ -18139,11 +18142,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -5.79013443,
-        "posY": 0.8594623,
+        "posY": 0.859468043,
         "posZ": -35.69796,
-        "rotX": -1.20187778E-07,
-        "rotY": 0.0467506126,
-        "rotZ": 3.08443447E-07,
+        "rotX": -1.2685517E-07,
+        "rotY": 0.04675083,
+        "rotZ": 3.01770626E-07,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -18152,9 +18155,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999465,
+        "r": 0.191999346,
         "g": 0.701,
-        "b": 0.167999476
+        "b": 0.167999357
       },
       "Locked": true,
       "Grid": false,
@@ -18896,9 +18899,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999464,
-        "g": 0.249999464,
-        "b": 0.249999464
+        "r": 0.249999344,
+        "g": 0.249999344,
+        "b": 0.249999344
       },
       "Locked": true,
       "Grid": false,
@@ -19101,11 +19104,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -4.49013329,
-        "posY": 0.859421968,
+        "posY": 0.8594137,
         "posZ": -35.6979675,
-        "rotX": -1.38912183E-05,
-        "rotY": 0.0527668037,
-        "rotZ": -9.292851E-06,
+        "rotX": -1.85647E-05,
+        "rotY": 0.0527663045,
+        "rotZ": -1.05856689E-05,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -19114,7 +19117,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999472,
+        "r": 0.117999338,
         "g": 0.53,
         "b": 1.0
       },
@@ -19537,11 +19540,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": -3.19014788,
-        "posY": 0.859394848,
+        "posY": 0.8593765,
         "posZ": -35.6979446,
-        "rotX": 8.763023E-06,
-        "rotY": 0.0508112945,
-        "rotZ": 3.37395636E-06,
+        "rotX": 1.13143387E-05,
+        "rotY": 0.0508118,
+        "rotZ": 3.37675533E-06,
         "scaleX": 0.5500004,
         "scaleY": 0.5500004,
         "scaleZ": 0.5500004
@@ -19551,7 +19554,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999456,
+        "g": 0.124999337,
         "b": 0.941
       },
       "Locked": true,
@@ -19840,12 +19843,12 @@
     {
       "Name": "Bag",
       "Transform": {
-        "posX": -1.88863575,
-        "posY": 0.85941124,
+        "posX": -1.88863659,
+        "posY": 0.859394968,
         "posZ": -35.69781,
-        "rotX": 6.92029232E-07,
+        "rotX": 6.697157E-07,
         "rotY": 359.972351,
-        "rotZ": 1.38503119E-05,
+        "rotZ": 1.81291834E-05,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -19855,7 +19858,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.959999859,
-        "g": 0.438999474,
+        "g": 0.438999355,
         "b": 0.807000041
       },
       "Locked": true,
@@ -20145,11 +20148,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 4.611296,
-        "posY": 0.8594424,
+        "posY": 0.8594373,
         "posZ": -35.69821,
-        "rotX": -6.958943E-07,
-        "rotY": 0.01407407,
-        "rotZ": -9.21483752E-06,
+        "rotX": -6.55743634E-07,
+        "rotY": 0.0140738366,
+        "rotZ": -1.027371E-05,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -20158,9 +20161,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999464,
-        "g": 0.249999464,
-        "b": 0.249999464
+        "r": 0.249999344,
+        "g": 0.249999344,
+        "b": 0.249999344
       },
       "Locked": true,
       "Grid": false,
@@ -20638,9 +20641,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999464,
-        "g": 0.249999464,
-        "b": 0.249999464
+        "r": 0.249999344,
+        "g": 0.249999344,
+        "b": 0.249999344
       },
       "Locked": true,
       "Grid": false,
@@ -20708,12 +20711,12 @@
     {
       "Name": "Bag",
       "Transform": {
-        "posX": 0.711421251,
-        "posY": 0.8594362,
+        "posX": 0.711421,
+        "posY": 0.8594389,
         "posZ": -35.6982841,
-        "rotX": 1.781274E-05,
-        "rotY": 0.004774062,
-        "rotZ": -5.280315E-06,
+        "rotX": 2.63805869E-05,
+        "rotY": 0.00477363542,
+        "rotZ": -7.55946667E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -21853,7 +21856,7 @@
       "Name": "Bag",
       "Transform": {
         "posX": 5.96397638,
-        "posY": 0.8594329,
+        "posY": 0.859427154,
         "posZ": -35.72796,
         "rotX": 1.598374E-06,
         "rotY": 0.0140984226,
@@ -21866,9 +21869,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.249999434,
-        "g": 0.249999434,
-        "b": 0.249999434
+        "r": 0.249999315,
+        "g": 0.249999315,
+        "b": 0.249999315
       },
       "Locked": true,
       "Grid": false,
@@ -23002,12 +23005,12 @@
     {
       "Name": "Bag",
       "Transform": {
-        "posX": -0.590108633,
-        "posY": 0.859412968,
+        "posX": -0.590109,
+        "posY": 0.8594023,
         "posZ": -35.6979942,
-        "rotX": 1.10569936E-05,
+        "rotX": 1.31725064E-05,
         "rotY": 359.96106,
-        "rotZ": 3.79486823E-06,
+        "rotZ": 7.005804E-06,
         "scaleX": 0.55000037,
         "scaleY": 0.55000037,
         "scaleZ": 0.55000037
@@ -23016,7 +23019,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128999531,
+        "r": 0.128999412,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -23827,9 +23830,9 @@
         "posX": -50.14326,
         "posY": 0.9652236,
         "posZ": -31.56195,
-        "rotX": -3.901945E-08,
+        "rotX": 1.730591E-07,
         "rotY": 180.014862,
-        "rotZ": 2.145212E-08,
+        "rotZ": 3.24068772E-08,
         "scaleX": 5.946227,
         "scaleY": 1.0,
         "scaleZ": 5.946227
@@ -24381,7 +24384,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 32.69824,
-        "posY": 1.34871674,
+        "posY": 1.34871686,
         "posZ": -27.3765812,
         "rotX": 90.0,
         "rotY": 359.502167,
@@ -24861,7 +24864,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 34.33659,
-        "posY": 1.34871709,
+        "posY": 1.34871721,
         "posZ": -28.18983,
         "rotX": 90.0,
         "rotY": 359.5045,
@@ -25053,7 +25056,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -33.27468,
-        "posY": 1.34871709,
+        "posY": 1.34871721,
         "posZ": -28.4389553,
         "rotX": 90.0,
         "rotY": 359.5045,
@@ -25067,8 +25070,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25163,8 +25166,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25245,7 +25248,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -31.6442928,
-        "posY": 1.34871674,
+        "posY": 1.34871686,
         "posZ": -28.4375553,
         "rotX": 90.0,
         "rotY": 359.505737,
@@ -25259,8 +25262,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25355,8 +25358,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25451,8 +25454,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25547,8 +25550,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25629,7 +25632,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -34.09445,
-        "posY": 1.34871686,
+        "posY": 1.34871674,
         "posZ": -28.4343185,
         "rotX": 90.0,
         "rotY": 359.503174,
@@ -25643,8 +25646,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25725,8 +25728,8 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -34.1065826,
-        "posY": 1.34871686,
-        "posZ": -27.62285,
+        "posY": 1.348717,
+        "posZ": -27.6223164,
         "rotX": 90.0,
         "rotY": 359.502319,
         "rotZ": 0.0,
@@ -25739,8 +25742,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.0999994054,
-        "b": 0.09399941
+        "g": 0.09999917,
+        "b": 0.0939991549
       },
       "Locked": false,
       "Grid": false,
@@ -25836,7 +25839,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -25932,7 +25935,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26028,7 +26031,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26124,7 +26127,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26205,9 +26208,9 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.18554,
-        "posY": 1.35272384,
-        "posZ": 4.185812,
-        "rotX": 89.98022,
+        "posY": 1.35272348,
+        "posZ": 4.18634748,
+        "rotX": 90.0,
         "rotY": 359.504242,
         "rotZ": 0.0,
         "scaleX": 1.54999959,
@@ -26220,7 +26223,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26301,7 +26304,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.1874123,
-        "posY": 1.352723,
+        "posY": 1.35272324,
         "posZ": 4.99157238,
         "rotX": 90.0,
         "rotY": 359.502167,
@@ -26316,7 +26319,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26397,7 +26400,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.9974251,
-        "posY": 1.35272336,
+        "posY": 1.35272324,
         "posZ": 5.803379,
         "rotX": 90.0,
         "rotY": 359.501953,
@@ -26412,7 +26415,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26508,7 +26511,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999425
+        "b": 0.171999186
       },
       "Locked": false,
       "Grid": false,
@@ -26602,9 +26605,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -26698,9 +26701,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -26794,9 +26797,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -26877,7 +26880,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": -16.3952141,
-        "posY": 1.34871721,
+        "posY": 1.34871709,
         "posZ": 27.4599342,
         "rotX": 90.0,
         "rotY": 359.504547,
@@ -26890,9 +26893,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -26986,9 +26989,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -27068,11 +27071,11 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -15.5766649,
-        "posY": 1.348717,
-        "posZ": 26.6521816,
+        "posX": -15.5766678,
+        "posY": 1.34871686,
+        "posZ": 26.6527157,
         "rotX": 90.0,
-        "rotY": 359.486969,
+        "rotY": 359.486816,
         "rotZ": 0.0,
         "scaleX": 1.54999959,
         "scaleY": 1.54999959,
@@ -27082,9 +27085,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -27178,9 +27181,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -27274,9 +27277,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999435,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999417
+        "b": 0.167999178
       },
       "Locked": false,
       "Grid": false,
@@ -27356,9 +27359,9 @@
     {
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 17.2103252,
-        "posY": 1.348717,
-        "posZ": 27.7756348,
+        "posX": 17.2103176,
+        "posY": 1.34871709,
+        "posZ": 27.7761688,
         "rotX": 90.0,
         "rotY": 359.5024,
         "rotZ": 0.0,
@@ -27370,7 +27373,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27466,7 +27469,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27562,7 +27565,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27658,7 +27661,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27754,7 +27757,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27850,7 +27853,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -27933,7 +27936,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 18.0301113,
-        "posY": 1.34871733,
+        "posY": 1.34871721,
         "posZ": 27.7701874,
         "rotX": 90.0,
         "rotY": 359.4984,
@@ -27946,7 +27949,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -28029,7 +28032,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 18.04221,
-        "posY": 1.34871733,
+        "posY": 1.34871745,
         "posZ": 26.9595413,
         "rotX": 90.0,
         "rotY": 359.5006,
@@ -28042,7 +28045,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999412,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -28125,7 +28128,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.1004868,
-        "posY": 1.34871876,
+        "posY": 1.34871757,
         "posZ": 3.30011845,
         "rotX": 90.0,
         "rotY": 359.504364,
@@ -28139,7 +28142,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28221,7 +28224,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 45.28449,
-        "posY": 1.34871757,
+        "posY": 1.34871733,
         "posZ": 4.92241764,
         "rotX": 90.0,
         "rotY": 359.503357,
@@ -28235,7 +28238,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28317,7 +28320,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.0991364,
-        "posY": 1.348719,
+        "posY": 1.34871781,
         "posZ": 4.93038654,
         "rotX": 90.0,
         "rotY": 359.504547,
@@ -28331,7 +28334,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28413,10 +28416,10 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.0944176,
-        "posY": 1.34871864,
+        "posY": 1.34871781,
         "posZ": 4.110581,
         "rotX": 90.0,
-        "rotY": 359.5049,
+        "rotY": 359.504883,
         "rotZ": 0.0,
         "scaleX": 1.54999959,
         "scaleY": 1.54999959,
@@ -28427,7 +28430,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28509,7 +28512,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 45.2838249,
-        "posY": 1.34871793,
+        "posY": 1.34871745,
         "posZ": 4.0983963,
         "rotX": 90.0,
         "rotY": 359.502747,
@@ -28523,7 +28526,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28619,7 +28622,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28701,7 +28704,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 46.0958176,
-        "posY": 1.348718,
+        "posY": 1.34871733,
         "posZ": 2.48019528,
         "rotX": 90.0,
         "rotY": 359.503571,
@@ -28715,7 +28718,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28797,7 +28800,7 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 45.2852135,
-        "posY": 1.34871793,
+        "posY": 1.34871733,
         "posZ": 2.4681046,
         "rotX": 90.0,
         "rotY": 359.5015,
@@ -28811,7 +28814,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999411,
+        "g": 0.124999158,
         "b": 0.941
       },
       "Locked": false,
@@ -28895,7 +28898,7 @@
         "posX": -16.0000057,
         "posY": 1.30948472,
         "posZ": -27.9998055,
-        "rotX": 1.79462862E-08,
+        "rotX": 1.84889188E-08,
         "rotY": 180.0,
         "rotZ": 180.0,
         "scaleX": 1.25705588,
@@ -29474,7 +29477,8 @@
           "UniqueBack": false
         }
       },
-      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n\r\n    tile_button = {}\r\n    tile_button.click_function = 'deal_tile_card'\r\n    tile_button.function_owner = self\r\n    tile_button.label = 'Deal tile Card'\r\n    tile_button.position = {2,0,0}\r\n    tile_button.rotation = {0,0,0}\r\n    tile_button.width = 800\r\n    tile_button.height = 500\r\n    tile_button.font_size = 100\r\n    tile_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(tile_button)\r\n    \r\n\r\n    --[[ print('Onload!') --]]\r\nend\r\n\r\nfunction deal_tile_card(obj, color, alt_click)\r\n    print(color)\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealTile\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
+      "XmlUI": "",
+      "LuaScript": "api_status = false\r\napi_address = \"http://127.0.0.1:5000/\"\r\n\r\nfunction onload()\r\n    ping_api()\r\n\r\n\r\n    tile_button = {}\r\n    tile_button.click_function = 'deal_tile_card'\r\n    tile_button.function_owner = self\r\n    tile_button.label = 'Deal tile Card'\r\n    tile_button.position = {2,0,0}\r\n    tile_button.rotation = {0,0,0}\r\n    tile_button.width = 800\r\n    tile_button.height = 500\r\n    tile_button.font_size = 100\r\n    tile_button.tooltip = \"I'm A Button!\"\r\n    self.createButton(tile_button)\r\n    self.setInvisibleTo({\"Blue\", \"White\", \"Green\", \"Purple\", \"Yellow\", \"Red\"})\r\n\r\n    --[[ print('Onload!') --]]\r\nend\r\n\r\nfunction deal_tile_card(obj, color, alt_click)\r\n    print(color)\r\n    if api_status then\r\n        WebRequest.put(api_address..\"dealTile\", JSON.encode(obj.getObjects()), function(result)\r\n            print(result.text)\r\n            parameters = {}\r\n            parameters.guid = result.text\r\n            parameters.callback_function = function(obj) \r\n                dealt_card = getObjectFromGUID(obj.getGUID())\r\n                dealt_card.deal(1, color)\r\n            end\r\n            obj.takeObject(parameters)\r\n        end)\r\n    else\r\n        obj.shuffle()\r\n        obj.deal(1, color)\r\n    end\r\n    \r\nend\r\n\r\nfunction ping_api()\r\n    WebRequest.get(api_address, function(result)\r\n        print(result.is_error)\r\n        if result.is_error \r\n        then \r\n            print(result.error)\r\n            api_status = false\r\n        else \r\n            api_status = true\r\n        end\r\n    end)\r\nend",
       "LuaScriptState": "",
       "ContainedObjects": [
         {
@@ -32355,12 +32359,12 @@
         "posZ": 12.0,
         "rotX": -8.042294E-07,
         "rotY": 179.960144,
-        "rotZ": 3.89636034E-06,
+        "rotZ": 3.89636E-06,
         "scaleX": 1.25705588,
         "scaleY": 1.0,
         "scaleZ": 1.25705588
       },
-      "Nickname": "Roof Landing",
+      "Nickname": "Roof",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -32408,7 +32412,7 @@
         "scaleY": 1.0,
         "scaleZ": 1.25705588
       },
-      "Nickname": "Upper Landing",
+      "Nickname": "Upper",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -32456,7 +32460,7 @@
         "scaleY": 1.0,
         "scaleZ": 1.25705588
       },
-      "Nickname": "Basement Landing",
+      "Nickname": "Basement",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -32494,12 +32498,12 @@
     {
       "Name": "Custom_Dice",
       "Transform": {
-        "posX": 0.157061,
-        "posY": 1.86801231,
-        "posZ": -0.138980329,
-        "rotX": 26.5650425,
-        "rotY": 0.00017945499,
-        "rotZ": 71.99995,
+        "posX": 0.157064587,
+        "posY": 1.86801291,
+        "posZ": -0.138979122,
+        "rotX": 26.5650082,
+        "rotY": 0.000183273165,
+        "rotZ": 72.00002,
         "scaleX": 2.14999914,
         "scaleY": 2.14999914,
         "scaleZ": 2.14999914
@@ -32647,7 +32651,7 @@
         "scaleY": 1.0,
         "scaleZ": 1.87838769
       },
-      "Nickname": "Entrance Hall/Foyer/Grand Staircase",
+      "Nickname": "Entrance",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -32685,11 +32689,11 @@
       "Name": "Figurine_Custom",
       "Transform": {
         "posX": -19.21851,
-        "posY": 1.172756,
+        "posY": 1.17275584,
         "posZ": -16.8177757,
-        "rotX": 7.67138943E-07,
+        "rotX": 8.900321E-07,
         "rotY": 359.986359,
-        "rotZ": -4.270276E-07,
+        "rotZ": -5.337655E-07,
         "scaleX": 0.6750002,
         "scaleY": 0.6750002,
         "scaleZ": 0.6750002
@@ -32718,6 +32722,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "629d4a"
@@ -32726,11 +32731,11 @@
       "Name": "Figurine_Custom",
       "Transform": {
         "posX": -20.4750519,
-        "posY": 1.17275584,
+        "posY": 1.172756,
         "posZ": -16.79464,
-        "rotX": 8.370142E-07,
+        "rotX": 5.87505269E-07,
         "rotY": 359.978027,
-        "rotZ": -4.27126935E-07,
+        "rotZ": -5.33803131E-07,
         "scaleX": 0.6750002,
         "scaleY": 0.6750002,
         "scaleZ": 0.6750002
@@ -32740,8 +32745,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999897,
-        "b": 0.0939989761
+        "g": 0.09999884,
+        "b": 0.09399886
       },
       "Locked": false,
       "Grid": false,
@@ -32759,6 +32764,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "9b0a6b"
@@ -32766,12 +32772,12 @@
     {
       "Name": "Figurine_Custom",
       "Transform": {
-        "posX": -19.13486,
+        "posX": -19.1348343,
         "posY": 1.16022754,
         "posZ": -15.661231,
-        "rotX": 7.184253E-07,
-        "rotY": 89.99228,
-        "rotZ": 5.150995E-07,
+        "rotX": 3.773636E-07,
+        "rotY": 89.99234,
+        "rotZ": 6.79147547E-07,
         "scaleX": 0.6000003,
         "scaleY": 0.6000003,
         "scaleZ": 0.6000003
@@ -32781,7 +32787,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.12499886,
+        "g": 0.124998741,
         "b": 0.941
       },
       "Locked": false,
@@ -32800,6 +32806,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "d681cb"
@@ -32810,9 +32817,9 @@
         "posX": -19.8081322,
         "posY": 1.16022754,
         "posZ": -14.7884321,
-        "rotX": 1.19409469E-06,
-        "rotY": -0.0009068161,
-        "rotZ": -5.3362146E-07,
+        "rotX": 5.772466E-07,
+        "rotY": -0.000906728557,
+        "rotZ": -4.26894871E-07,
         "scaleX": 0.6000003,
         "scaleY": 0.6000003,
         "scaleZ": 0.6000003
@@ -32821,7 +32828,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998935,
+        "r": 0.1179988,
         "g": 0.53,
         "b": 1.0
       },
@@ -32841,6 +32848,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "5dddb1"
@@ -32851,9 +32859,9 @@
         "posX": -20.8681374,
         "posY": 1.14769912,
         "posZ": -14.7655659,
-        "rotX": 9.327727E-07,
+        "rotX": 1.06157643E-06,
         "rotY": 359.9864,
-        "rotZ": -4.27047E-07,
+        "rotZ": -4.27063924E-07,
         "scaleX": 0.525000334,
         "scaleY": 0.525000334,
         "scaleZ": 0.525000334
@@ -32862,9 +32870,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191998839,
+        "r": 0.19199872,
         "g": 0.701,
-        "b": 0.16799885
+        "b": 0.167998731
       },
       "Locked": false,
       "Grid": false,
@@ -32882,6 +32890,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "7392a1"
@@ -32890,11 +32899,11 @@
       "Name": "Figurine_Custom",
       "Transform": {
         "posX": -20.7238541,
-        "posY": 1.14769924,
+        "posY": 1.14769912,
         "posZ": -15.723258,
-        "rotX": 3.03386685E-07,
+        "rotX": 3.28318833E-07,
         "rotY": 89.99032,
-        "rotZ": 8.54711232E-07,
+        "rotZ": 7.457762E-07,
         "scaleX": 0.525000334,
         "scaleY": 0.525000334,
         "scaleZ": 0.525000334
@@ -32905,7 +32914,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.1719994
+        "b": 0.171999276
       },
       "Locked": false,
       "Grid": false,
@@ -32923,6 +32932,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0
       },
+      "XmlUI": "",
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "4feb68"
@@ -33093,5 +33103,5 @@
       "id": 18
     }
   },
-  "VersionNumber": "v12.2.3"
+  "VersionNumber": "v12.3.5"
 }

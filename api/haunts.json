@@ -1,0 +1,59 @@
+{
+    "ghost_bride": {
+        "num": 20,
+        "omen": "c69fd7",
+        "room": "d8c715",
+        "betrayer": "Vivian Lopez",
+        "required":[
+            "211509",
+            "51e6cc",
+            "74df57",
+            "2855db",
+            "5b83ba",
+            "2ab044"
+        ]
+    },
+    "abyss_gazes_back": {
+        "num": 22,
+        "omen": "c7e981",
+        "room": "6083fe",
+        "betrayer": -1,
+        "required": [
+            "ce7f74",
+            "2ab044",
+            "c69fdy",
+            "211509",
+            "5b83ba",
+            "45d1d0"
+        ]
+    },
+    "its_alive": {
+        "num": 31,
+        "omen": "bfd86a",
+        "room": "9b16cd",
+        "betrayer": -1,
+        "required":[
+            "27f993",
+            "d8c715",
+            "507b0e",
+            "56e19e",
+            "d63a62"
+        ]
+    },
+    "death_finds_all": {
+        "num": 44,
+        "omen": "2305a1",
+        "room": "cf6a10",
+        "betrayer": "youngest",
+        "required": [
+            "7f16e8",
+            "cf6a10",
+            "5b83ba",
+            "6083fe",
+            "3134e2",
+            "45d1d0",
+            "507b0e"
+        ]
+
+    }
+}

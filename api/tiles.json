@@ -6,7 +6,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Panic Room",
-    "nickname": "Panic Room"
+    "nickname": "Panic Room",
+    "type": "event",
+    "doors": [3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -15,7 +17,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Dusty Hallway",
-    "nickname": "Dusty Hallway"
+    "nickname": "Dusty Hallway",
+    "type": "none",
+    "doors": [0,1,2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -24,7 +28,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Creaky Hallway",
-    "nickname": "Creaky Hallway"
+    "nickname": "Creaky Hallway",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -33,7 +39,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Game Room",
-    "nickname": "Game Room"
+    "nickname": "Game Room",
+    "type": "event",
+    "doors": [0,1,2]
 }, {
     "description": "",
     "gm_notes": "",
@@ -42,7 +50,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Junk Room",
-    "nickname": "Junk Room"
+    "nickname": "Junk Room",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -51,7 +61,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Mystic Elevator",
-    "nickname": "Mystic Elevator"
+    "nickname": "Mystic Elevator",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -60,7 +72,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Organ Room",
-    "nickname": "Organ Room"
+    "nickname": "Organ Room",
+    "type": "event",
+    "doors": [2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -69,7 +83,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Statuary Corridor",
-    "nickname": "Statuary Corridor"
+    "nickname": "Statuary Corridor",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -78,7 +94,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Spiral Staircase",
-    "nickname": "Spiral Staircase"
+    "nickname": "Spiral Staircase",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -87,7 +105,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Study",
-    "nickname": "Study"
+    "nickname": "Study",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -96,7 +116,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Locked Room",
-    "nickname": "Locked Room"
+    "nickname": "Locked Room",
+    "type": "event",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -105,7 +127,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Drawing Room",
-    "nickname": "Drawing Room"
+    "nickname": "Drawing Room",
+    "type": "undefined",
+    "doors": [0,1,2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -114,7 +138,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Nursery",
-    "nickname": "Nursery"
+    "nickname": "Nursery",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -123,7 +149,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Sewing Room",
-    "nickname": "Sewing Room"
+    "nickname": "Sewing Room",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -132,7 +160,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Solarium",
-    "nickname": "Solarium"
+    "nickname": "Solarium",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -141,7 +171,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Widow's Walk",
-    "nickname": "Widow's Walk"
+    "nickname": "Widow's Walk",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -150,7 +182,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Rookery",
-    "nickname": "Rookery"
+    "nickname": "Rookery",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -159,7 +193,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Gymnasium",
-    "nickname": "Gymnasium"
+    "nickname": "Gymnasium",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -168,7 +204,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Operating Laboratory",
-    "nickname": "Operating Laboratory"
+    "nickname": "Operating Laboratory",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -177,7 +215,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Research Laboratory",
-    "nickname": "Research Laboratory"
+    "nickname": "Research Laboratory",
+    "type": "event",
+    "doors": [0,2]
 }, {
     "description": "",
     "gm_notes": "",
@@ -186,7 +226,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Servants' Quarters",
-    "nickname": "Servants' Quarters"
+    "nickname": "Servants' Quarters",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -195,7 +237,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Storeroom",
-    "nickname": "Storeroom"
+    "nickname": "Storeroom",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -204,7 +248,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Vault",
-    "nickname": "Vault"
+    "nickname": "Vault",
+    "type": "event",
+    "doors": [0]
 }, {
     "description": "",
     "gm_notes": "",
@@ -213,7 +259,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Attic",
-    "nickname": "Attic"
+    "nickname": "Attic",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -222,7 +270,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Balcony",
-    "nickname": "Balcony"
+    "nickname": "Balcony",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -231,7 +281,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Bedroom",
-    "nickname": "Bedroom"
+    "nickname": "Bedroom",
+    "type": "event",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -240,7 +292,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Gallery",
-    "nickname": "Gallery"
+    "nickname": "Gallery",
+    "type": "omen",
+    "doors": [0,2]
 }, {
     "description": "",
     "gm_notes": "",
@@ -249,7 +303,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Master Bedroom",
-    "nickname": "Master Bedroom"
+    "nickname": "Master Bedroom",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -258,7 +314,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Tower",
-    "nickname": "Tower"
+    "nickname": "Tower",
+    "type": "event",
+    "doors": [1,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -267,7 +325,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Bathroom",
-    "nickname": "Bathroom"
+    "nickname": "Bathroom",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -276,7 +336,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Bloody Room",
-    "nickname": "Bloody Room"
+    "nickname": "Bloody Room",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -285,7 +347,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Chapel",
-    "nickname": "Chapel"
+    "nickname": "Chapel",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -294,7 +358,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Charred Room",
-    "nickname": "Charred Room"
+    "nickname": "Charred Room",
+    "type": "omen",
+    "doors": [0,1,2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -303,7 +369,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Collapsed Room",
-    "nickname": "Collapsed Room"
+    "nickname": "Collapsed Room",
+    "type": "undefined",
+    "doors": [0,1,2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -312,7 +380,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Conservatory",
-    "nickname": "Conservatory"
+    "nickname": "Conservatory",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -321,7 +391,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Library",
-    "nickname": "Library"
+    "nickname": "Library",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -330,7 +402,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Theater",
-    "nickname": "Theater"
+    "nickname": "Theater",
+    "type": "omen",
+    "doors": [0,2]
 }, {
     "description": "",
     "gm_notes": "",
@@ -339,7 +413,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Ballroom",
-    "nickname": "Ballroom"
+    "nickname": "Ballroom",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -348,7 +424,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Coal Chute",
-    "nickname": "Coal Chute"
+    "nickname": "Coal Chute",
+    "type": "undefined",
+    "doors": [1]
 }, {
     "description": "",
     "gm_notes": "",
@@ -357,7 +435,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Dining Room",
-    "nickname": "Dining Room"
+    "nickname": "Dining Room",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -366,7 +446,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Gardens",
-    "nickname": "Gardens"
+    "nickname": "Gardens",
+    "type": "event",
+    "doors": [0,2]
 }, {
     "description": "",
     "gm_notes": "",
@@ -375,7 +457,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Graveyard",
-    "nickname": "Graveyard"
+    "nickname": "Graveyard",
+    "type": "event",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -384,7 +468,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Patio",
-    "nickname": "Patio"
+    "nickname": "Patio",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -393,7 +479,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Tree House",
-    "nickname": "Tree House"
+    "nickname": "Tree House",
+    "type": "event",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -402,7 +490,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Abandoned Room",
-    "nickname": "Abandoned Room"
+    "nickname": "Abandoned Room",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -411,7 +501,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Arsenal",
-    "nickname": "Arsenal"
+    "nickname": "Arsenal",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -420,7 +512,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Kitchen",
-    "nickname": "Kitchen"
+    "nickname": "Kitchen",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -429,7 +523,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Laundry",
-    "nickname": "Laundry"
+    "nickname": "Laundry",
+    "type": "item",
+    "doors": [2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -438,7 +534,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Menagerie",
-    "nickname": "Menagerie"
+    "nickname": "Menagerie",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -447,7 +545,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Catacombs",
-    "nickname": "Catacombs"
+    "nickname": "Catacombs",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -456,7 +556,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Cave",
-    "nickname": "Cave"
+    "nickname": "Cave",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -465,7 +567,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Chasm",
-    "nickname": "Chasm"
+    "nickname": "Chasm",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -474,7 +578,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Crypt",
-    "nickname": "Crypt"
+    "nickname": "Crypt",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -483,7 +589,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Dungeon",
-    "nickname": "Dungeon"
+    "nickname": "Dungeon",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -492,7 +600,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Furnace Room",
-    "nickname": "Furnace Room"
+    "nickname": "Furnace Room",
+    "type": "omen",
+    "doors": [0,2,3]
 }, {
     "description": "",
     "gm_notes": "",
@@ -501,7 +611,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Larder",
-    "nickname": "Larder"
+    "nickname": "Larder",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -510,7 +622,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Pentagram Chamber",
-    "nickname": "Pentagram Chamber"
+    "nickname": "Pentagram Chamber",
+    "type": "omen",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -519,7 +633,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Stairs from Basement",
-    "nickname": "Stairs from Basement"
+    "nickname": "Stairs from Basement",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -528,7 +644,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Storm Cellar",
-    "nickname": "Storm Cellar"
+    "nickname": "Storm Cellar",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -537,7 +655,9 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Underground Lake",
-    "nickname": "Underground Lake"
+    "nickname": "Underground Lake",
+    "type": "undefined",
+    "doors": []
 }, {
     "description": "",
     "gm_notes": "",
@@ -546,5 +666,7 @@
     "lua_script": "",
     "lua_script_state": "",
     "name": "Wine Cellar",
-    "nickname": "Wine Cellar"
+    "nickname": "Wine Cellar",
+    "type": "item",
+    "doors": [0,2]
 }]
