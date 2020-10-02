@@ -3,7 +3,6 @@
 - Events cannot move players
 - Game ends when haunt begins
 - no dropping or trading cards
-
 Hard code special tiles/events?
 
 ### Process
