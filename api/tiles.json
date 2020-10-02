@@ -1,6 +1,50 @@
 [{
     "description": "",
     "gm_notes": "",
+    "guid": "670fb1",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Basement",
+    "nickname": "Basement",
+    "type": "none",
+    "doors": [0,1,2,3]
+},{
+    "description": "",
+    "gm_notes": "",
+    "guid": "670fb1",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Foyer",
+    "nickname": "Foyer",
+    "type": "none",
+    "doors": [0,1,2,3]
+},{
+    "description": "",
+    "gm_notes": "",
+    "guid": "670fb1",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Entrance",
+    "nickname": "Entrance",
+    "type": "none",
+    "doors": [0,1,3]
+},{
+    "description": "",
+    "gm_notes": "",
+    "guid": "c241d6",
+    "index": 0,
+    "lua_script": "",
+    "lua_script_state": "",
+    "name": "Upper Landing",
+    "nickname": "Upper",
+    "type": "none",
+    "doors": [0,1,2,3]
+},{
+    "description": "",
+    "gm_notes": "",
     "guid": "3f889d",
     "index": 0,
     "lua_script": "",
