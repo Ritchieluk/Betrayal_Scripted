@@ -1,5 +1,5 @@
 from BetrayalBoard import Board
-from RandomAgent import RandomAgent
+import random
 
 class BetrayalGame():
     players = []
@@ -11,7 +11,7 @@ class BetrayalGame():
 
     def __init__(self, agents):
         self.players = agents
-        self.board = Board()
+        self.board = Board(len(agents))
 
     def playGame(self):
         """
@@ -24,23 +24,26 @@ class BetrayalGame():
             # Each player gets a turn each round
             for player in range(len(self.players)):
                 # Each player can take multiple actions on a turn
-                moves = self.players[player].speed
+                moves = self.players[player].getSpeed()
                 while moves > 0:
                     # Get the action they are going to take
-                    action = self.players[player].getNextAction(self.board)
+                    action = self.players[player].takeAction(self.board)
                     # This means move in one of the four cardinal directions
                     if action < 4:
                         nextTile = self.board.movePlayer(player, action)
                         if nextTile == "undefined":
                             moves -= 1
                         elif nextTile == "omen":
-                            omenCount += 1
+                            self.omenCount += 1
                             self.rollHaunt()
                             moves = 0
+                            
                         else:
                             moves = 0
                     else:
                         print("Misunderstood action")
+                if self.hauntRevealed:
+                                break
 
 
 
@@ -51,8 +54,18 @@ class BetrayalGame():
         hauntRoll = 0
         for i in range(6):
             hauntRoll += random.choice([0,1,2])
+        print("===================================")
+        print("|ROLL FOR THE HAUNT!!! SPOOooOOKYY|")
+        print("===================================")
+        print("| Roll Required: {}               |".format(self.omenCount))
+        print("| Roll: {}                        |".format(hauntRoll))
+        
         if hauntRoll < self.omenCount:
             self.hauntRevealed = True
+            print("|       THE HAUNT HAS BEGUN      |")
+        else:
+            print("|      YOU'RE SAFE THIS TIME     |")
+        print("===================================")
         return self.hauntRevealed
 
 

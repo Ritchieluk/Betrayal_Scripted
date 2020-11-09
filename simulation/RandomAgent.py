@@ -1,7 +1,7 @@
 import random
 class RandomAgent():
     # Dict of attributes to the index on their array of values
-    attributes = {"Might": 0, "Speed": 0, "Sanity": 0, "Intelligence": 0}
+    attributes = {"Might": 5, "Speed": 5, "Sanity": 5, "Intelligence": 5}
     # Arrays of possible attributes
     might = [0,1,2,3,4,5,6,7,8]
     speed = [0,1,2,3,4,5,6,7,8]
@@ -9,9 +9,11 @@ class RandomAgent():
     intelligence = [0,1,2,3,4,5,6,7,8]
     playerNum = -1
 
-    def __init__(self, playerNumber, mightScores, initialMight, speedScores, initialSpeed, 
-        sanityScores, initialSanity, intelligenceScores, initialIntelligence):
+    def __init__(self, playerNumber):
         self.playerNum = playerNumber
+
+    def changeScores(self, mightScores, initialMight, speedScores, initialSpeed, 
+        sanityScores, initialSanity, intelligenceScores, initialIntelligence):
         self.might = mightScores
         self.attributes["Might"] = initialMight
         self.speed = speedScores
@@ -23,7 +25,7 @@ class RandomAgent():
 
     def takeAction(self, boardState):
         # TODO: Enable smarter options
-        return random.choice(boardState.getActions()) 
+        return random.choice(boardState.getActions(self.playerNum)) 
 
 
     def takePhysicalDamage(self, amount):
@@ -54,3 +56,15 @@ class RandomAgent():
             if attribute == 0:
                 return False
         return True
+
+    def getMight(self):
+        return self.might[self.attributes["Might"]]
+    
+    def getSpeed(self):
+        return self.speed[self.attributes["Speed"]]
+
+    def getSanity(self):
+        return self.sanity[self.attributes["Sanity"]]
+        
+    def getIntelligence(self):
+        return self.intelligence[self.attributes["Intelligence"]]
