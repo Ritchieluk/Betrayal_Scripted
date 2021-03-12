@@ -29,6 +29,11 @@ class BetrayalGame():
                     # Get the action they are going to take
                     action = self.players[player].takeAction(self.board)
                     # This means move in one of the four cardinal directions
+
+                    # Pass playerNum, gameState, and action decided to Drama Manager
+                    # Return an appropriate action, if no action is taken proceed with
+                    #   standard simulation
+
                     if action < 4:
                         nextTile = self.board.movePlayer(player, action)
                         if nextTile == "undefined":
@@ -43,7 +48,6 @@ class BetrayalGame():
                     else:
                         print("Misunderstood action")
                 if self.hauntRevealed:
-                                break
 
 
 
