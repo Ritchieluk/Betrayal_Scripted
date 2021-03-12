@@ -65,6 +65,7 @@ class Board():
         Given a tile, add the newTile into the tree of tiles and the
         array of existing tiles based on where the player decided to put it
         """
+        # TODO: Change to return a tile and a card, or false if no card
         # Take a random tile from the stack
         tileName = random.choice(list(self.roomStack.keys())) 
         print("{} tile revealed!".format(tileName))
