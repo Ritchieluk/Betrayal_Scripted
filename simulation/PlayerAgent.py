@@ -1,5 +1,6 @@
 from RandomAgent import RandomAgent
 import random
+import copy
 
 class PlayerAgent(RandomAgent):
     """
@@ -21,6 +22,11 @@ class PlayerAgent(RandomAgent):
             self.evaluationFunction = self.statsEvaluation
         elif type == "Collector":
             self.evaluationFunction = self.itemsEvaluation
+
+    def takeAction(self, boardState):
+        board = copy.deepcopy(boardState)
+        
+
 
     """
     Function defaultEvaluation(self, boardState)
