@@ -15,7 +15,7 @@ class Node:
         self.parent = nodeParent # This is a Node object
         self.type = nodeParent.getType() ^ 1 if nodeParent is not None else 1# 1 for Max Node, 0 for Min Node, we do this operation because every child will have the opposite
         self.q = [0,0] # [wins, visits]
-        self.state = currentGameState.clone()
+        self.state = copy.deepcopy(currentGameState)
         self.children = []
         
     def backProp(self, newResult):

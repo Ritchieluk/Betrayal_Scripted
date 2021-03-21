@@ -2,6 +2,7 @@ import random
 class RandomAgent():
     # Dict of attributes to the index on their array of values
     attributes = {"Might": 5, "Speed": 5, "Sanity": 5, "Intelligence": 5}
+    startingAttributes = {"Might": 5, "Speed": 5, "Sanity": 5, "Intelligence": 5}
     # Arrays of possible attributes
     might = [0,1,2,3,4,5,6,7,8]
     speed = [0,1,2,3,4,5,6,7,8]
@@ -11,6 +12,8 @@ class RandomAgent():
     hasVisited = {"Larder": False, "Library": False, "Gymnasium": False, "Chapel": False, "Vault": False}
     itemCount = 0
     omensDiscovered = 0
+    tilesExplored = 0
+    isTraitor = False
 
     def __init__(self, playerNumber):
         self.playerNum = playerNumber
@@ -25,6 +28,7 @@ class RandomAgent():
         self.attributes["Sanity"] = initialSanity
         self.intelligence = intelligenceScores
         self.attributes["Intelligence"] = initialIntelligence
+        self.startingAttributes = self.attributes
 
     def takeAction(self, boardState):
         return random.choice(boardState.getActions(self.playerNum)) 

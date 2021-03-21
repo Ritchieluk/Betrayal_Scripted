@@ -36,7 +36,10 @@ class BetrayalGame():
                     #   standard simulation
 
                     if action < 4:
+                        rooms = self.board.revealedRooms
                         name, nextTile = self.board.movePlayer(player, action)
+                        if name not in rooms:
+                                self.players[player].tilesExplored += 1
                         if nextTile == "undefined":
                             moves -= 1
                         elif nextTile == "omen":
@@ -76,6 +79,7 @@ class BetrayalGame():
                     else:
                         print("Misunderstood action")
                     if self.hauntRevealed:
+                        self.players[player].isTraitor = True
                         break
 
 

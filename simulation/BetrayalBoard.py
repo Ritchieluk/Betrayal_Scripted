@@ -6,7 +6,7 @@ class Board():
     revealedRooms = {} # Room names mapped to types
     roomStack = {} # Room names mapped to types
     roomLocations = {} # Map of names to coordinate tuples
-
+    haunt = False
 
     def __init__(self, numPlayers):
         for floor in self.boardState.keys():
