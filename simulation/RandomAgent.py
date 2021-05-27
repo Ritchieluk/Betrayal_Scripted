@@ -1,8 +1,8 @@
 import random
 class RandomAgent():
     # Dict of attributes to the index on their array of values
-    attributes = {"Might": 5, "Speed": 5, "Sanity": 5, "Intelligence": 5}
-    startingAttributes = {"Might": 5, "Speed": 5, "Sanity": 5, "Intelligence": 5}
+    attributes = {"Might": 4, "Speed": 4, "Sanity": 4, "Intelligence": 4}
+    startingAttributes = {"Might": 4, "Speed": 4, "Sanity": 4, "Intelligence": 4}
     # Arrays of possible attributes
     might = [0,1,2,3,4,5,6,7,8]
     speed = [0,1,2,3,4,5,6,7,8]

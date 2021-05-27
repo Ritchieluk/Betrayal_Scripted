@@ -9,9 +9,10 @@ class BetrayalGame():
     omenCount = 0
     hauntRevealed = False
 
-    def __init__(self, agents):
+    def __init__(self, agents, simulated=False):
         self.players = agents
         self.board = Board(len(agents))
+        self.sim = simulated
 
     def playGame(self):
         """
@@ -19,17 +20,30 @@ class BetrayalGame():
             Allowing them to progress through the mansion
             and flip tiles and draw cards
         """
+        roundCount = 0
         # Primary game loop
         while not self.hauntRevealed:
+            roundCount += 1
+            if not self.sim:
+                print(roundCount)
+            if self.sim and roundCount > 100:
+                self.hauntRevealed = True
             # Each player gets a turn each round
             for player in range(len(self.players)):
                 # Each player can take multiple actions on a turn
+                if not self.sim:
+                    print("Player {}'s turn!".format(player))
+
                 moves = self.players[player].getSpeed()
+                #print(moves)
                 attemptedVault = False
                 while moves > 0 and not self.hauntRevealed:
                     # Get the action they are going to take
                     action = self.players[player].takeAction(self.board)
                     # This means move in one of the four cardinal directions
+
+                    if not self.sim:
+                        print("Player {s} has taken action {d}".format(s=player, d=action))
 
                     # Pass playerNum, gameState, and action decided to Drama Manager
                     # Return an appropriate action, if no action is taken proceed with
@@ -37,7 +51,11 @@ class BetrayalGame():
 
                     if action < 4:
                         rooms = self.board.revealedRooms
-                        name, nextTile = self.board.movePlayer(player, action)
+                        if not self.sim:
+                            print("Revealed Rooms length: {}".format(len(rooms)))
+                        name, nextTile = self.board.movePlayer(player, action, self.sim)
+                        if not self.sim:
+                            print(nextTile)
                         if name not in rooms:
                                 self.players[player].tilesExplored += 1
                         if nextTile == "undefined":
@@ -52,6 +70,10 @@ class BetrayalGame():
                             moves = 0
                         else:
                             moves = 0
+
+                        if not self.sim:
+                            print("Player {s} has explored {d} tiles".format(s=player, d=self.players[player].tilesExplored))
+
 
                         # ================== Tile Specific Actions =========================
                         if name == "Gymnasium" and not self.players[player].hasVisited["Gymnasium"]:
@@ -73,11 +95,12 @@ class BetrayalGame():
                             for i in range(int):
                                 intCheck += random.choice([0,1,2])
                             if intCheck >= 5:
-                                self.players[player].hasVisted["Vault"] = True
+                                self.players[player].hasVisited["Vault"] = True
                                 self.players[player].itemCount += 2
 
                     else:
                         print("Misunderstood action")
+                        moves -= 1
                     if self.hauntRevealed:
                         self.players[player].isTraitor = True
                         break
@@ -91,18 +114,22 @@ class BetrayalGame():
         hauntRoll = 0
         for i in range(6):
             hauntRoll += random.choice([0,1,2])
-        print("===================================")
-        print("|ROLL FOR THE HAUNT!!! SPOOooOOKYY|")
-        print("===================================")
-        print("| Roll Required: {}               |".format(self.omenCount))
-        print("| Roll: {}                        |".format(hauntRoll))
         
+        if not self.sim:
+            print("===================================")
+            print("|ROLL FOR THE HAUNT!!! SPOOooOOKYY|")
+            print("===================================")
+            print("| Roll Required: {}               |".format(self.omenCount))
+            print("| Roll: {}                        |".format(hauntRoll))
+           
         if hauntRoll < self.omenCount:
             self.hauntRevealed = True
-            print("|       THE HAUNT HAS BEGUN      |")
+            if not self.sim:
+                print("|       THE HAUNT HAS BEGUN      |")
         else:
-            print("|      YOU'RE SAFE THIS TIME     |")
-        print("===================================")
+            if not self.sim:
+                print("|      YOU'RE SAFE THIS TIME     |")
+                print("===================================")
         return self.hauntRevealed
 
 

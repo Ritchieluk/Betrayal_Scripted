@@ -3,12 +3,15 @@ import json, random, os.path
 class Board():
     boardState = {"upper": [], "ground": [], "basement": []}
     playerLocations = [] # Array of tuples (floor, (x,y)) indexed by player number representing their location.
+    revealerCounts = [] # array indexed by player numbers to number of rooms revealed
     revealedRooms = {} # Room names mapped to types
     roomStack = {} # Room names mapped to types
     roomLocations = {} # Map of names to coordinate tuples
     haunt = False
+    numPlayers = 0
 
     def __init__(self, numPlayers):
+        self.numPlayers = numPlayers
         for floor in self.boardState.keys():
             for i in range(20):
                 temp = []
@@ -26,6 +29,7 @@ class Board():
 
         for i in range(numPlayers):
             self.playerLocations.append(("ground", (10,10)))
+            self.revealerCounts.append(0)
         self.initializeTileStack()
         
     
@@ -47,7 +51,6 @@ class Board():
         """
         moves = []
         location = self.playerLocations[playerNum]
-        floor = location[0]
         coordinates = location[1]
         if(coordinates[0]<20):
             moves.append(0)
@@ -60,7 +63,7 @@ class Board():
         return moves
 
         
-    def addTile(self, location):
+    def addTile(self, player, location, simulated):
         """
         Given a tile, add the newTile into the tree of tiles and the
         array of existing tiles based on where the player decided to put it
@@ -68,9 +71,11 @@ class Board():
         # TODO: Change to return a tile and a card, or false if no card
         # Take a random tile from the stack
         tileName = random.choice(list(self.roomStack.keys())) 
-        print("{} tile revealed!".format(tileName))
+        if not simulated:
+            print("{} tile revealed!".format(tileName))
         # Move it into the revealed rooms dict
         self.revealedRooms[tileName] = self.roomStack[tileName]
+        self.revealerCounts[player] += 1
         del self.roomStack[tileName]
         # set its new location
         self.roomLocations[tileName] = (location[1][0], location[1][1])
@@ -79,7 +84,7 @@ class Board():
 
 
 
-    def movePlayer(self, playerNum, direction):
+    def movePlayer(self, playerNum, direction, simulated=False):
         # Check if move can be made
         name = "unknown"
         type = "undefined"
@@ -88,26 +93,37 @@ class Board():
             coordinates = self.playerLocations[playerNum][1]
             if direction == 0:
                 coordinates = (coordinates[0], coordinates[1]+1)
-                print("Player {} has moved Up".format(playerNum))
+                if not simulated:
+                    print("Player {} has moved Up".format(playerNum))
             elif direction == 1:
                 coordinates = (coordinates[0] + 1, coordinates[1])
-                print("Player {} has moved Right".format(playerNum))
+                if not simulated:
+                    print("Player {} has moved Right".format(playerNum))
             elif direction == 2:
                 coordinates = (coordinates[0], coordinates[1]-1)
-                print("Player {} has moved Down".format(playerNum))
+                if not simulated:
+                    print("Player {} has moved Down".format(playerNum))
             elif direction == 3:
                 coordinates = (coordinates[0]-1, coordinates[1])
-                print("Player {} has moved Left".format(playerNum))
+                if not simulated:
+                    print("Player {} has moved Left".format(playerNum))
+            else:
+                print("What is going on dude...")
             self.playerLocations[playerNum] = (self.playerLocations[playerNum][0], coordinates)
             location = self.playerLocations[playerNum]
             # Check if there is already a room tile there
             if(self.boardState[location[0]][location[1][0]][location[1][1]] == ""):
                 # Add the tile
-                location = self.playerLocations[playerNum]
-                name, type = self.addTile(location)
+                print("Adding new tile")
+                name, type = self.addTile(playerNum, location, simulated)
+                if not simulated:
+                    print(type)
                 return name, type
+        elif direction >3 or direction <0:
+            print("ERROR ---- Unexpected movement \"{}\" detected ---- ".format(direction))
         else:
-            print("ERROR ---- Unexpected movement detected ---- ")
+            if not simulated:
+                print("WARNING ---- Boundary Detected ---- ")
         return name, type
         
     def getRoom(self, player, direction):
@@ -122,23 +138,23 @@ class Board():
 
     def isLegalPlayerMovement(self, player, direction):
         if direction == 0:
-            if self.playerLocations[player][1][1] + 1 <= 20:
+            if self.playerLocations[player][1][1] + 1 < 20:
                 return True
         elif direction == 1:
-            if self.playerLocations[player][1][0] + 1 <= 20:
+            if self.playerLocations[player][1][0] + 1 < 20:
                 return True
         elif direction == 2:
-            if self.playerLocations[player][1][1] - 1 >= 0:
+            if self.playerLocations[player][1][1] - 1 > 0:
                 return True
         elif direction == 3:
-            if self.playerLocations[player][1][0] - 1 >= 0:
+            if self.playerLocations[player][1][0] - 1 > 0:
                 return True
         return False
 
     def isLegalTileAssignment(self, player, direction):
         if self.isLegalPlayerMovement(player, direction):
             coords = self.resultingCoordinate(player, direction)
-            if coords is not False:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            if coords is not False:                                          
                 for room in self.revealedRooms.keys():
                     if self.revealedRooms[room] == coords:
                         return False
@@ -147,7 +163,7 @@ class Board():
         return True
 
     def resultingCoordinate(self, player, direction):
-        if self.isLegalPlayerMovement(self, player, direction):
+        if self.isLegalPlayerMovement(player, direction):
             coords = self.playerLocations[player][1]
             if direction == 0:
                 return (coords[0], coords[1]+1)

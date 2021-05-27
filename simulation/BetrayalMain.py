@@ -1,11 +1,16 @@
 from BetrayalGame import BetrayalGame
 from RandomAgent import RandomAgent
+from PlayerAgent import PlayerAgent
 
 agents = []
+types = ["Explorer"]
 
-for i in range(4):
-    agents.append(RandomAgent(i))
+count = 0
+for type in types:
+    agents.append(PlayerAgent(count, typeagent))
+    count += 1
 
 
 game = BetrayalGame(agents)
 game.playGame()
+print("game finished")

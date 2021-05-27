@@ -10,10 +10,9 @@ class PlayerAgent(RandomAgent):
         and includes logic to more intelligently select actions.
     """
 
-    evaluationFunction = defaultEvaluation
 
     def __init__(self, playerNumber, type):
-        super().__init__(self, playerNumber)
+        super().__init__(playerNumber)
         self.time = 0
         self.name = type
         if type == "Explorer":
@@ -26,18 +25,21 @@ class PlayerAgent(RandomAgent):
             self.evaluationFunction = self.statsEvaluation
         elif type == "Collector":
             self.evaluationFunction = self.itemsEvaluation
+        else:
+            self.evaluationFunction = self.defaultEvaluation
 
     def takeAction(self, boardState):
         board = copy.deepcopy(boardState)
         root = Node(board)
         pMoves = board.getActions(self.playerNum)
+        print(pMoves)
         count = 0
 
-        while(count < 500):
+        while(count < 50):
             if count < len(pMoves):
                 nextState = copy.deepcopy(board)
                 nextAction = pMoves[count]
-                nextState.takeAction(nextAction)
+                nextState.movePlayer(self.playerNum, nextAction, True)
                 nextNode = Node(nextState, nextAction, root)
                 root.appendChild(nextNode)
                 result = self.simulate(nextNode.getGameState())
@@ -47,7 +49,7 @@ class PlayerAgent(RandomAgent):
                 nextState = copy.deepcopy(nextLeaf.getGameState())
                 if len(nextState.getActions(self.playerNum)) > 0:
                     nextAction = random.choice(nextState.getActions(self.playerNum))
-                    nextState.takeAction(nextAction)
+                    nextState.movePlayer(self.playerNum, nextAction, True)
                     nextNode = Node(nextState, nextAction, nextLeaf)
                     nextLeaf.appendChild(nextNode)
                     result = self.simulate(nextNode.getGameState())
@@ -96,17 +98,13 @@ class PlayerAgent(RandomAgent):
         simulate till end
         Return which tuple (1,1) if we won, (0,1) if we lost
         """
-        agents = []
-        for i in range(len(state.playerLocations)):
-            agents.append(RandomAgent(i))
+        agents = [RandomAgent(0)]
 
-        game = BetrayalGame(agents) 
+        game = BetrayalGame(agents, True) 
         state = copy.deepcopy(state)
         game.board = state
         game.playGame()
         
-
-        # TODO: Use Evaluation functions to select proper return value
 
         return self.evaluationFunction(game.board)
 
@@ -135,7 +133,7 @@ class PlayerAgent(RandomAgent):
                 actions.append(0)
         return actions
         """
-        return boardState.players[self.playerNum].tilesExplored
+        return boardState.revealerCounts[self.playerNum]
 
     """
     Function omenEvaluation(self, boardState):
